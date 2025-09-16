@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOTINCBR | Desenvolvimento .NET</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variáveis da paleta Tech Precision */
+        :root {
+            --azul-profundo: #0D1B2A;
+            --azul-medio: #1E3A5F;
+            --ciano-tecnologico: #00B4D8;
+            --cinza-light: #E2E8F0;
+            --branco-puro: #FFFFFF;
+            --preto-sombra: #0A141F;
+        }
+
+        /* Reset e estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--azul-profundo);
+            color: var(--cinza-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Efeito de partículas futurista */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Mobile First - Navegação */
+        .nav-mobile-header {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+           right:2.5rem;
+            background: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--ciano-tecnologico);
+            border-radius: 15px;
+            padding: 1rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0, 180, 216, 0.3);
+        }
+
+        .logo-nexus {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--branco-puro);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .logo-dot {
+            color: var(--ciano-tecnologico);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: var(--branco-puro);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-hologram-Desktop {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            height: 100vh;
+            background: var(--azul-profundo);
+            border-right: 2px solid var(--ciano-tecnologico);
+            padding: 2rem;
+            z-index: 1001;
+            transition: left 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .nav-hologram {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            height: 100vh;
+            background: var(--azul-profundo);
+            border-right: 2px solid var(--ciano-tecnologico);
+            padding: 2rem;
+            z-index: 1001;
+            transition: left 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .nav-hologram.active {
+            left: 0;
+        }
+
+        .nav-hologram-Desktop.active {
+            left: 0;
+        }
+
+        .nav-hologram-Desktop a {
+            color: var(--cinza-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.2rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0, 180, 216, 0.2);
+            transition: color 0.3s ease;
+        }
+
+        .nav-hologram a {
+            color: var(--cinza-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.2rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0, 180, 216, 0.2);
+            transition: color 0.3s ease;
+        }
+
+        .nav-hologram-Desktop a:hover {
+            color: var(--ciano-tecnologico);
+        }
+
+        .nav-hologram a:hover {
+            color: var(--ciano-tecnologico);
+        }
+
+        .close-menu {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            color: var(--branco-puro);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .btn-cyber {
+            background: linear-gradient(135deg, var(--ciano-tecnologico), #0099BC);
+            color: var(--branco-puro);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-cyber:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 180, 216, 0.6);
+        }
+
+        /* Hero Section Responsiva */
+        .hero-neon {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 6rem 0 2rem;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hero-glitch {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--branco-puro), var(--ciano-tecnologico));
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 180, 216, 0.4);
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            padding: 0 1rem;
+        }
+
+        /* Grid de Serviços Responsivo */
+        .services-hologram {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-top: 5em;
+            margin-bottom: 3rem;
+            padding: 0 1rem;
+        }
+
+        .title-neon {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--branco-puro);
+            position: relative;
+            display: inline-block;
+        }
+
+        .title-neon:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--ciano-tecnologico);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+            padding: 0 1rem;
+        }
+
+        .service-card-3d {
+            background: rgba(30, 58, 95, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--ciano-tecnologico);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--branco-puro);
+        }
+
+        /* Formulário Responsivo */
+        .contact-matrix {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--azul-profundo), var(--preto-sombra));
+            position: relative;
+        }
+
+        .form-hologram {
+            background: rgba(13, 27, 42, 0.8);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--ciano-tecnologico);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 0 1rem;
+            box-shadow: 0 0 30px rgba(0, 180, 216, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--branco-puro);
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            border-radius: 10px;
+            color: var(--branco-puro);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--ciano-tecnologico);
+            box-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Botão Flutuante do WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        @keyframes pulse-whatsapp {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.12);
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.8);
+        }
+
+        .whatsapp-tooltip {
+            display: none;
+        }
+
+        /* Media Queries para tablets */
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 2rem;
+            }
+
+            .hero-glitch {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+                padding: 0;
+            }
+
+            .form-hologram {
+                margin: 0 auto;
+                max-width: 500px;
+            }
+
+            .nav-mobile-header {
+                left: 2rem;
+                right:1rem;
+            }
+        }
+
+        /* Media Queries para desktop */
+        @media (min-width: 1024px) {
+            .nav-mobile-header {
+                display: none;
+            }
+
+            .nav-immersive {
+                position: fixed;
+                top: 2rem;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(13, 27, 42, 0.95);
+                backdrop-filter: blur(10px);
+                border: 1px solid var(--ciano-tecnologico);
+                border-radius: 50px;
+                padding: 1rem 2rem;
+                z-index: 1000;
+                display: flex;
+                align-items: center;
+                gap: 3rem;
+                box-shadow: 0 0 30px rgba(0, 180, 216, 0.3);
+            }
+
+            .nav-hologram {
+                position: static;
+                width: auto;
+                height: auto;
+                background: transparent;
+                border: none;
+                padding: 0;
+                flex-direction: row;
+                gap: 2.5rem;
+                display: none;
+            }
+
+            .nav-hologram-Desktop {
+                position: static;
+                width: auto;
+                height: auto;
+                background: transparent;
+                border: none;
+                padding: 0;
+                flex-direction: row;
+                gap: 2.5rem;
+            }
+
+            .nav-hologram-Desktop a {
+
+                border: none;
+                padding: 0;
+                font-size: 1rem;
+            }
+
+            .nav-hologram a {
+
+                border: none;
+                padding: 0;
+                font-size: 1rem;
+            }
+
+            .close-menu {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: none;
+            }
+
+            .hero-glitch {
+                font-size: 4rem;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2.5rem;
+            }
+
+            .form-hologram {
+                max-width: 600px;
+                padding: 3rem;
+            }
+
+            .whatsapp-tooltip {
+                display: block;
+                position: absolute;
+                right: 65px;
+                background: var(--azul-profundo);
+                color: white;
+                padding: 0.6rem 1.2rem;
+                border-radius: 20px;
+                font-weight: 500;
+                opacity: 0;
+                transform: translateX(20px);
+                transition: all 0.3s ease;
+                pointer-events: none;
+                white-space: nowrap;
+                font-size: 0.9rem;
+            }
+
+            .whatsapp-float:hover .whatsapp-tooltip {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Melhorias para telas muito grandes */
+        @media (min-width: 1400px) {
+            .hero-glitch {
+                font-size: 4.5rem;
+            }
+
+            .services-grid {
+                gap: 3rem;
+            }
+        }
+
+        /* Ajustes para modo paisagem em mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero-neon {
+                padding: 8rem 0 2rem;
+                min-height: auto;
+                right:4rem;
+            }
+
+            .nav-mobile-header {
+                top: 0.5rem;
+                padding: 0.8rem;
+            }
+        }
+             .hero-content {
+            text-align: center;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Efeito de Partículas Futuristas -->
+    <div id="particles-js"></div>
+
+    <!-- Navegação Mobile -->
+    <nav class="nav-mobile-header">
+        <a href="#" class="logo-nexus">
+            DOT<span class="logo-dot">•</span>INC<span style="font-size: 0.8em; margin-left: 0.2em;">BR</span>
+        </a>
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Menu Mobile-->
+    <nav class="nav-hologram" id="mobileMenu">
+        <button class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#services">Serviços</a>
+        <a href="./portifolio.html">Portfólio</a>
+        <a href="./sobre.html">Sobre</a>
+        <a href="./contato.html">Contato</a>
+        <a href="./contato.html" class="btn-cyber">Iniciar Projeto</a>
+    </nav>
+
+    <!-- Navegação Desktop (será mostrada apenas em desktop) -->
+    <nav class="nav-immersive" style="display: none;">
+        <a href="#" class="logo-nexus">
+            DOT<span class="logo-dot">•</span>INC<span style="font-size: 0.9em; margin-left: 0.2em;">BR</span>
+        </a>
+        <div class="nav-hologram-Desktop">
+            <a href="#services">Serviços</a>
+            <a href="./portifolio.html">Portfólio</a>
+            <a href="./sobre.html">Sobre</a>
+            <a href="./contato.html">Contato</a>
+        </div>
+        <a href="./contato.html" class="btn-cyber">Iniciar Projeto</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-neon">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-glitch">DESENVOLVIMENTO .NET</h1>
+                <p class="hero-subtitle">Soluções digitais sob medida com tecnologia, performance e design </p>
+                <a href="./contato.html" class="btn-cyber">Transforme Sua Ideia em Realidade</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços -->
+    <section id="services" class="services-hologram">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="title-neon">Serviços Personalisados</h2>
+                <p>Tecnologia e design usados ao seu favor</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card-3d">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="service-title">Sistemas .NET Sob Medida</h3>
+                    <p>Entendemos a sua necessidade para fazer um desenvolvimento de sistemas complexos com arquitetura
+                        limpa e personalizado</p>
+                </div>
+                  <!-- <div class="service-card-3d">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="service-title">Apps Android</h3>
+                    <p>Aplicativos nativos multiplataforma com performance de elite e UX imersiva</p>
+                </div> -->
+                <div class="service-card-3d">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="service-title">Plataformas Web de Alto Impacto</h3>
+                    <p>Sites e aplicações web que convertem visitantes em clientes fiéis</p>
+                </div>
+                  <div class="service-card-3d">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="service-title">Tire a sua idea do papel</h3>
+                    <p>Sistemas, sites e aplicações que facilitam e otimizam sua rotina.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Contato -->
+    <section id="contact" class="contact-matrix">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="title-neon">Pronto para Inovar?</h2>
+                <p>Vamos criar algo extraordinário juntos</p>
+            </div>
+            <!-- <form class="form-hologram">
+                <div class="form-group">
+                    <label class="form-label">Nome Completo</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">E-mail</label>
+                    <input type="email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Seu Projeto</label>
+                    <textarea class="form-input" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn-cyber">Enviar para o Futuro</button>
+            </form> -->
+        </div>
+    </section>
+
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/5511970797269?text=Olá%20Bruno,%20gostaria%20de%20conversar%20sobre%20um%20projeto"
+        class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Fale diretamente comigo!</span>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Controle do menu mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Fechar menu ao clicar em links
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Mostrar navegação desktop em telas grandes
+        function checkScreenSize() {
+            const navImmersive = document.querySelector('.nav-immersive');
+            const navMobile = document.querySelector('.nav-mobile-header');
+
+            if (window.innerWidth >= 1024) {
+                navImmersive.style.display = 'flex';
+                navMobile.style.display = 'none';
+            } else {
+                navImmersive.style.display = 'none';
+                navMobile.style.display = 'flex';
+            }
+        }
+
+        // Configuração das partículas
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 60, density: { enable: true, value_area: 800 } },
+                color: { value: "#00B4D8" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#00B4D8",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            }
+        });
+
+        // Inicializar e monitorar tamanho da tela
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+
+        // Efeito de digitação no título
+        document.addEventListener('DOMContentLoaded', function () {
+            const heroText = document.querySelector('.hero-glitch');
+            if (heroText && window.innerWidth > 768) {
+                const originalText = heroText.textContent;
+                heroText.textContent = '';
+
+                let i = 0;
+                const typeWriter = () => {
+                    if (i < originalText.length) {
+                        heroText.textContent += originalText.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 50);
+                    }
+                };
+                setTimeout(typeWriter, 1000);
+            }
+        });
+    </script>
+</body>
+
+</html>
