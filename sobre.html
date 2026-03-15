@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre | DOTINCBR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Variáveis da paleta Tech Precision */
+        :root {
+            --azul-profundo: #0D1B2A;
+            --azul-medio: #1E3A5F;
+            --ciano-tecnologico: #00B4D8;
+            --cinza-light: #E2E8F0;
+            --branco-puro: #FFFFFF;
+            --preto-sombra: #0A141F;
+        }
+
+        /* Reset e estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--azul-profundo);
+            color: var(--cinza-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Efeito de partículas futurista */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navegação Mobile */
+        .nav-mobile-header {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            right: 1rem;
+            background: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--ciano-tecnologico);
+            border-radius: 15px;
+            padding: 1rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 20px rgba(0, 180, 216, 0.3);
+        }
+
+        .logo-nexus {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--branco-puro);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .logo-dot {
+            color: var(--ciano-tecnologico);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: var(--branco-puro);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-hologram {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            height: 100vh;
+            background: var(--azul-profundo);
+            border-right: 2px solid var(--ciano-tecnologico);
+            padding: 2rem;
+            z-index: 1001;
+            transition: left 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .nav-hologram-desktop {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            height: 100vh;
+            background: var(--azul-profundo);
+            border-right: 2px solid var(--ciano-tecnologico);
+            padding: 2rem;
+            z-index: 1001;
+            transition: left 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .nav-hologram.active {
+            left: 0;
+        }
+   .nav-hologram-desktop.active {
+            left: 0;
+        }
+        .nav-hologram a {
+            color: var(--cinza-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.2rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0, 180, 216, 0.2);
+            transition: color 0.3s ease;
+        }
+    .nav-hologram-desktop a {
+            color: var(--cinza-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.2rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0, 180, 216, 0.2);
+            transition: color 0.3s ease;
+        }
+        .nav-hologram a:hover {
+            color: var(--ciano-tecnologico);
+        }
+
+            .nav-hologram-desktop a:hover {
+            color: var(--ciano-tecnologico);
+        }
+
+        .close-menu {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            color: var(--branco-puro);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .btn-cyber {
+            background: linear-gradient(135deg, var(--ciano-tecnologico), #0099BC);
+            color: var(--branco-puro);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-cyber:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 180, 216, 0.6);
+        }
+
+        /* Hero Section */
+        .about-hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 8rem 0 4rem;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 992px) {
+            .about-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .about-text {
+            padding-right: 1rem;
+        }
+
+        .hero-glitch {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--branco-puro), var(--ciano-tecnologico));
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 180, 216, 0.4);
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .about-desc {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        p {
+            margin-bottom: 25px;
+            text-align: justify;
+            /* Texto justificado */
+        }
+
+        .about-img {
+            position: relative;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            border: 3px solid var(--ciano-tecnologico);
+            box-shadow: 0 0 30px rgba(0, 180, 216, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 40px rgba(0, 180, 216, 0.6);
+        }
+
+        .img-border {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--ciano-tecnologico);
+            border-radius: 25px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        /* Seção de Habilidades */
+        .skills-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--azul-profundo), var(--preto-sombra));
+            border-radius: 30px;
+            margin: 2rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .title-neon {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--branco-puro);
+            position: relative;
+            display: inline-block;
+        }
+
+        .title-neon:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--ciano-tecnologico);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .skill-category {
+            background: rgba(30, 58, 95, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--ciano-tecnologico);
+            box-shadow: 0 10px 25px rgba(0, 180, 216, 0.2);
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--ciano-tecnologico);
+            margin-right: 1rem;
+        }
+
+        .skill-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--branco-puro);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-item i {
+            color: var(--ciano-tecnologico);
+            margin-right: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        /* Seção de Linha do Tempo */
+        .timeline-section {
+            padding: 5rem 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            background: var(--ciano-tecnologico);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1.5px;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                left: 0 !important;
+            }
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background: rgba(30, 58, 95, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 180, 216, 0.3);
+            border-radius: 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--ciano-tecnologico);
+            box-shadow: 0 0 20px rgba(0, 180, 216, 0.3);
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: var(--ciano-tecnologico);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--branco-puro);
+        }
+
+        .timeline-desc {
+            font-size: 1rem;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--ciano-tecnologico);
+            border: 4px solid var(--azul-profundo);
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item::after {
+                left: 21px !important;
+            }
+        }
+
+        /* Botão Flutuante do WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        @keyframes pulse-whatsapp {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.12);
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.8);
+        }
+
+        .whatsapp-tooltip {
+            display: none;
+        }
+
+        /* Navegação Desktop */
+        .nav-immersive {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--ciano-tecnologico);
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            gap: 3rem;
+            box-shadow: 0 0 30px rgba(0, 180, 216, 0.3);
+        }
+
+        /* Media Queries para tablets */
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 2rem;
+            }
+
+            .hero-glitch {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* Media Queries para desktop */
+        @media (min-width: 1024px) {
+            .nav-mobile-header {
+                display: none;
+            }
+
+            .nav-immersive {
+                display: flex;
+            }
+
+      
+              .nav-hologram-desktop {
+                position: static;
+                width: auto;
+                height: auto;
+                background: transparent;
+                border: none;
+                padding: 0;
+                flex-direction: row;
+                gap: 2.5rem;
+            }
+
+            .nav-hologram-desktop a {
+                border: none;
+                padding: 0;
+                font-size: 1rem;
+            }
+
+            .close-menu {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: none;
+            }
+
+            .hero-glitch {
+                font-size: 4rem;
+            }
+
+            .whatsapp-tooltip {
+                display: block;
+                position: absolute;
+                right: 65px;
+                background: var(--azul-profundo);
+                color: white;
+                padding: 0.6rem 1.2rem;
+                border-radius: 20px;
+                font-weight: 500;
+                opacity: 0;
+                transform: translateX(20px);
+                transition: all 0.3s ease;
+                pointer-events: none;
+                white-space: nowrap;
+                font-size: 0.9rem;
+            }
+
+            .whatsapp-float:hover .whatsapp-tooltip {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Melhorias para telas muito grandes */
+        @media (min-width: 1400px) {
+            .hero-glitch {
+                font-size: 4.5rem;
+            }
+        }
+
+        /* Ajustes para modo paisagem em mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .about-hero {
+                padding: 8rem 0 2rem;
+                min-height: auto;
+            }
+
+            .nav-mobile-header {
+                top: 0.5rem;
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Efeito de Partículas Futuristas -->
+    <div id="particles-js"></div>
+
+    <!-- Navegação Mobile -->
+    <nav class="nav-mobile-header">
+        <a href="./index.html" class="logo-nexus">
+            <i class="fas fa-arrow-left" style="margin-right: 10px;"></i>
+            DOT<span class="logo-dot">•</span>INC<span style="font-size: 0.8em; margin-left: 0.2em;">BR</span>
+        </a>
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Menu Mobile -->
+    <nav class="nav-hologram" id="mobileMenu">
+        <button class="close-menu" id="closeMenu">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="./index.html">Home</a>
+        <a href="./index.html#services">Serviços</a>
+        <a href="./portfolio.html">Portfólio</a>
+        <a href="./sobre.html" style="color: var(--ciano-tecnologico);">Sobre</a>
+        <a href="./contato.html">Contato</a>
+    </nav>
+
+    <!-- Navegação Desktop -->
+    <nav class="nav-immersive">
+        <a href="./index.html" class="logo-nexus">
+            DOT<span class="logo-dot">•</span>INC<span style="font-size: 0.9em; margin-left: 0.2em;">BR</span>
+        </a>
+        <div class="nav-hologram-desktop">
+            <a href="./index.html">Home</a>
+            <a href="./index.html#services">Serviços</a>
+            <a href="./portifolio.html">Portfólio</a>
+            <a href="./sobre.html" style="color: var(--ciano-tecnologico);">Sobre</a>
+            <a href="./contato.html">Contato</a>
+        </div>
+        <a href="./contato.html" class="btn-cyber">Iniciar Projeto</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="hero-content">
+                    <h1 class="hero-glitch">MINHA JORNADA</h1>
+                    <p class="hero-subtitle">Desenvolvedor .NET</p>
+                    </div>
+                    <div class="about-desc">
+                        <p>Olá, eu sou Bruno Yukio Mimura, um apaixonado por tecnologia e desenvolvimento de software
+                            com mais de 4 anos de experiência na criação de soluções digitais que transformam a vida das
+                            pessoas.</p>
+
+                        <p>Minha jornada começou de forma inusitada, impulsionada pela falta de paciência para lidar com
+                            processos repetitivos e improdutivos. Movido pela curiosidade, iniciei com pequenos
+                            automatismos em Excel para monitorar faturamento e movimento de uma loja de pneus. Mas eu
+                            queria mais - desejava melhorar e automatizar ainda mais os processos.</p>
+
+                        <p>Porém, uma fatalidade interveio em meu caminho: sofri um acidente de moto que desestabilizou
+                            todos os meus planos. Após alguns anos longe da minha paixão, em 2019 retornei com
+                            determinação ao meu objetivo de usar a programação como ferramenta para facilitar a vida das
+                            pessoas.</p>
+
+                        <p>Essa experiência me levou a tentar compreender mais profundamente as necessidades humanas por
+                            trás de cada sistema, o que me fez mergulhar de cabeça no universo .NET - um mergulho do
+                            qual nunca mais saí. Ao longo dos anos, tive o privilégio de trabalhar em projetos
+                            desafiadores que me permitiram desenvolver expertise em desenvolvimento back-end com SQL para
+                            sistemas corporativos com front-end em Windows Forms.</p>
+
+                        <p>Agora, a cada dia e com o surgimento da IA, busco aprender e me desenvolver continuamente,
+                            aprofundando meus conhecimentos em .NetFramework, ASP.NET, MAUI, Blazor, HTML, CSS, JavaScript e outras
+                            tecnologias.</p>
+
+                        <p>Acredito firmemente que a tecnologia deve ser não apenas funcional e facilitadora do dia a
+                            dia, mas também intuitiva e visualmente atraente. Por isso, dedico-me com paixão a criar
+                            experiências que unem alta performance com design cuidadosamente elaborado, sempre pensando
+                            nas pessoas que utilizarão essas soluções.</p>
+                    </div>
+                    <a href="./contato.html" class="btn-cyber">Vamos Trabalhar Juntos</a>
+                </div>
+                <div class="about-img">
+                    <img src="./img/BrunoPerfil.jpg"
+                        alt="Bruno Yukio Mimura" class="profile-img">
+                    <div class="img-border"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Habilidades -->
+    <section class="skills-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="title-neon">MINHAS HABILIDADES</h2>
+                <p>Tecnologias e ferramentas que domino e utilizo no dia a dia</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="skill-title">Desenvolvimento .NET</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li class="skill-item"><i class="fas fa-check"></i> C# & .NET Core</li>
+                        <li class="skill-item"><i class="fas fa-check"></i> ASP.NET MVC</li>
+                        <li class="skill-item"><i class="fas fa-check"></i> Entity Framework Core</li>
+                        <li class="skill-item"><i class="fas fa-check"></i> Web API</li>
+                        <li class="skill-item"><i class="fas fa-check"></i> Blazor</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="skill-title">Desenvolvimento Mobile</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li class="skill-item"><i class="fas fa-check"></i> .NET MAUI</li>
+                        <!-- <li class="skill-item"><i class="fas fa-check"></i> Xamarin.Forms</li>
+                        <li class="skill-item"><i class="fas fa-check"></i> XAML & MVVM</li>
+                        <li class="skill-item"><i class="fas fa-check"></i> Publicação em Stores</li>
+                        <li class="skill-item"><i class="fas fa-check"></i> Integração com APIs</li> -->
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="skill-title">Front-end & Web</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li class="skill-item"><i class="fas fa-check"></i> HTML5 & CSS3</li>
+                        <li class="skill-item"><i class="fas fa-check"></i> JavaScript & TypeScript</li>
+                        <li class="skill-item"><i class="fas fa-check"></i> Bootstrap & Tailwind</li>
+                        <!-- <li class="skill-item"><i class="fas fa-check"></i> React & Angular</li> -->
+                        <li class="skill-item"><i class="fas fa-check"></i> Responsive Design</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="skill-title">Banco de Dados</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li class="skill-item"><i class="fas fa-check"></i> SQL Server</li>
+                        <li class="skill-item"><i class="fas fa-check"></i> MySQL</li>
+                        <!-- <li class="skill-item"><i class="fas fa-check"></i> MongoDB</li> -->
+                        <li class="skill-item"><i class="fas fa-check"></i> Entity Framework Core</li>
+                        <li class="skill-item"><i class="fas fa-check"></i> Otimização de queries</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3 class="skill-title">Cloud & DevOps</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li class="skill-item"><i class="fas fa-check"></i> Microsoft Azure</li>
+                        <!-- <li class="skill-item"><i class="fas fa-check"></i> Docker & Containers</li>
+                        <li class="skill-item"><i class="fas fa-check"></i> CI/CD Pipelines</li> -->
+                        <li class="skill-item"><i class="fas fa-check"></i> Git & GitHub</li>
+                        <!-- <li class="skill-item"><i class="fas fa-check"></i> Deploy e Monitoramento</li> -->
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <div class="skill-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="skill-title">Ferramentas & Metodologias</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li class="skill-item"><i class="fas fa-check"></i> Visual Studio & VS Code</li>
+                        <li class="skill-item"><i class="fas fa-check"></i> Scrum & Agile</li>
+                        <!-- <li class="skill-item"><i class="fas fa-check"></i> Testes Unitários</li> -->
+                        <!-- <li class="skill-item"><i class="fas fa-check"></i> Figma & UI/UX Design</li> -->
+                        <li class="skill-item"><i class="fas fa-check"></i> Documentação de Projetos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Linha do Tempo -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="section-title">
+                <h2 class="title-neon">MINHA JORNADA PROFISSIONAL</h2>
+                <p>Principais marcos da minha carreira em desenvolvimento</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2018 - 2019</div>
+                        <h3 class="timeline-title">Início na Carreira</h3>
+                        <p class="timeline-desc">Primeiros passos no desenvolvimento .NET e SQL, atuando em projetos de
+                            sistemas desktop com Windows Forms.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2019 - 2020</div>
+                        <h3 class="timeline-title">Especialização em WinForms</h3>
+                        <p class="timeline-desc">Maturidade em desenvolcimento WinForms com persistencia em Banco de
+                            Dados SQL.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020 - 2021</div>
+                        <h3 class="timeline-title">Inicio de contato com a estrutura Web</h3>
+                        <p class="timeline-desc">Entendendo melhor como funiona um WebService e Api</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021 - 2022</div>
+                        <h3 class="timeline-title">Descobrindo o desenvolvimento Web</h3>
+                            <p class="timeline-desc">Aprofundamento em arquiteturas limpas, microsserviços, padrões de
+                                design e boas práticas de desenvolvimento.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 - 2023</div>
+                        <h3 class="timeline-title">.NET MAUI</h3>
+                        <p class="timeline-desc">Aprendiado .NET MAUI geração de aplicativos android.</p>
+                    </div>
+                </div>
+                <!-- <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023 - Atual</div>
+                        <h3 class="timeline-title">DOTINCBR</h3>
+                        <p class="timeline-desc">Fundação da DOTINCBR para oferecer soluções completas em
+                            desenvolvimento .NET, MAUI e aplicações web.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023 - Atual</div>
+                        <h3 class="timeline-title">DOTINCBR</h3>
+                        <p class="timeline-desc">Fundação da DOTINCBR para oferecer soluções completas em
+                            desenvolvimento .NET, MAUI e aplicações web.</p>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Botão Flutuante do WhatsApp -->
+    <a href="https://wa.me/5511970797269?text=Olá%20Bruno,%20gostaria%20de%20conversar%20sobre%20um%20projeto"
+        class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Fale diretamente comigo!</span>
+    </a>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Controle do menu mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const closeMenu = document.getElementById('closeMenu');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenu.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Fechar menu ao clicar em links
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Configuração das partículas
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 60, density: { enable: true, value_area: 800 } },
+                color: { value: "#00B4D8" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#00B4D8",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            }
+        });
+
+        // Animação de scroll para os itens da timeline
+        function checkScroll() {
+            const items = document.querySelectorAll('.timeline-content, .skill-category');
+
+            items.forEach(item => {
+                const position = item.getBoundingClientRect();
+
+                // Se o item estiver visível na tela
+                if (position.top < window.innerHeight - 100) {
+                    item.style.opacity = "1";
+                    item.style.transform = "translateY(0)";
+                }
+            });
+        }
+
+        // Inicializar opacidade dos elementos
+        document.querySelectorAll('.timeline-content, .skill-category').forEach(item => {
+            item.style.opacity = "0";
+            item.style.transform = "translateY(20px)";
+            item.style.transition = "all 0.6s ease";
+        });
+
+        // Verificar itens visíveis ao carregar e ao scrollar
+        window.addEventListener('load', checkScroll);
+        window.addEventListener('scroll', checkScroll);
+
+        // Mostrar navegação desktop em telas grandes
+        function checkScreenSize() {
+            const navImmersive = document.querySelector('.nav-immersive');
+            const navMobile = document.querySelector('.nav-mobile-header');
+
+            if (window.innerWidth >= 1024) {
+                navImmersive.style.display = 'flex';
+                navMobile.style.display = 'none';
+            } else {
+                navImmersive.style.display = 'none';
+                navMobile.style.display = 'flex';
+            }
+        }
+
+        // Inicializar e monitorar tamanho da tela
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+    </script>
+</body>
+
+</html>
