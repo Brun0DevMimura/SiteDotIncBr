@@ -53,10 +53,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Desabilitar rolagem para manter focado na tela cheia */
-        html, body {
-            overflow: hidden;
+        /* Layout responsivo que centraliza em telas grandes e permite scroll em telas pequenas */
+        html {
             height: 100%;
+        }
+        body {
+            min-height: 100%;
+            overflow-y: auto;
         }
 
         /* Efeito de Gradiente de Borda Contínuo e Glow */
@@ -151,7 +154,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 
-<body class="bg-techDark text-slate-200 font-sans antialiased flex items-center justify-center min-h-screen relative selection:bg-techCyan/30 selection:text-white">
+<body class="bg-techDark text-slate-200 font-sans antialiased min-h-screen relative selection:bg-techCyan/30 selection:text-white">
 
     <!-- Preloader Dark Tech Modern -->
     <div id="preloader" class="fixed inset-0 z-[9999] bg-techDark flex flex-col items-center justify-center pointer-events-auto transition-all duration-700">
@@ -172,7 +175,7 @@
     <div class="ambient-glow glow-3"></div>
 
     <!-- Card Wrapper -->
-    <main class="w-full max-w-md px-6 z-10 card-3d-wrap">
+    <main class="w-full max-w-md mx-auto px-6 py-10 z-10 card-3d-wrap">
         
         <!-- Cartão Virtual Premium -->
         <div class="card-3d glow-border rounded-3xl p-8 backdrop-blur-md bg-slate-950/70 shadow-2xl relative overflow-hidden flex flex-col items-center text-center">
