@@ -1,939 +1,695 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio | DOTINCBR</title>
+
+    <!-- SEO e Otimizações -->
+    <title>Portfólio de Projetos | DotIncBR - Cases de Sucesso .NET e Web</title>
+    <meta name="description"
+        content="Conheça nosso portfólio de sistemas personalizados e plataformas web corporativas desenvolvidas com tecnologia .NET de alta performance.">
+    <meta name="keywords"
+        content="portfólio dotinc, cases de sucesso, sistemas net, blazor, ribeirão pires, grande abc, alto tietê">
+
+    <!-- Meta Tags Open Graph -->
+    <meta property="og:title" content="Portfólio de Projetos | DotIncBR">
+    <meta property="og:description"
+        content="Veja na prática nossos sistemas corporativos entregues e plataformas web de alto desempenho.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dotinc.com.br/portifolio">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        techDark: '#071739',      /* Deep Tech Navy */
+                        techCard: '#A4B5C4',      /* Muted Steel */
+                        techBlue: '#E3C39D',      /* Cyber Gold */
+                        techCyan: '#CDD5DB',      /* Cool Gray */
+                        techGreen: '#FFFFFF',     /* White */
+                    },
+                    boxShadow: {
+                        'neon-cyan': '0 0 20px rgba(6, 182, 212, 0.25)',
+                        'neon-blue': '0 0 20px rgba(37, 99, 235, 0.25)',
+                        'neon-green': '0 0 20px rgba(16, 185, 129, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* Variáveis da paleta Tech Precision */
-        :root {
-            --azul-profundo: #0D1B2A;
-            --azul-medio: #1E3A5F;
-            --ciano-tecnologico: #00B4D8;
-            --cinza-light: #E2E8F0;
-            --branco-puro: #FFFFFF;
-            --preto-sombra: #0A141F;
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        /* Reset e estilos base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', 'Inter', sans-serif;
+        ::-webkit-scrollbar-track {
+            background: #030712;
         }
 
-        body {
-            background: var(--azul-profundo);
-            color: var(--cinza-light);
-            overflow-x: hidden;
-            line-height: 1.6;
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
         }
 
-        /* Efeito de partículas futurista */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
         }
 
-        /* Container principal */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Navegação Mobile */
-        .nav-mobile-header {
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-            right: 1rem;
-            background: rgba(13, 27, 42, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--ciano-tecnologico);
-            border-radius: 15px;
-            padding: 1rem;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 0 20px rgba(0, 180, 216, 0.3);
-        }
-
-        .logo-nexus {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--branco-puro);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .logo-dot {
-            color: var(--ciano-tecnologico);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.7;
-            }
-        }
-
-        .menu-toggle {
-            background: none;
-            border: none;
-            color: var(--branco-puro);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .nav-hologram {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 80%;
-            height: 100vh;
-            background: var(--azul-profundo);
-            border-right: 2px solid var(--ciano-tecnologico);
-            padding: 2rem;
-            z-index: 1001;
-            transition: left 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-             display: none;
-        }
-
-         .nav-hologram-Desktop{
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 80%;
-            height: 100vh;
-            background: var(--azul-profundo);
-            border-right: 2px solid var(--ciano-tecnologico);
-            padding: 2rem;
-            z-index: 1001;
-            transition: left 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .nav-hologram.active {
-            left: 0;
-            display: flex  ;
-        }
-
-         .nav-hologram-Desktop.active {
-            left: 0;
-        }
-
-        .nav-hologram-Desktop a {
-            color: var(--cinza-light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.2rem;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(0, 180, 216, 0.2);
-            transition: color 0.3s ease;
-        }
-
-        .nav-hologram a {
-            color: var(--cinza-light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.2rem;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(0, 180, 216, 0.2);
-            transition: color 0.3s ease;
-        }
-
-        .nav-hologram a:hover {
-            color: var(--ciano-tecnologico);
-        }
-        .nav-hologram-Desktop a:hover {
-            color: var(--ciano-tecnologico);
-        }
-
-        .close-menu {
-            align-self: flex-end;
-            background: none;
-            border: none;
-            color: var(--branco-puro);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .btn-cyber {
-            background: linear-gradient(135deg, var(--ciano-tecnologico), #0099BC);
-            color: var(--branco-puro);
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
-            display: inline-block;
-            text-align: center;
-        }
-
-        .btn-cyber:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(0, 180, 216, 0.6);
-        }
-
-        /* Hero Section */
-        .portfolio-hero {
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
+        .glow-border {
             position: relative;
-            padding: 8rem 0 4rem;
-            text-align: center;
+            background: linear-gradient(#0b0f19, #0b0f19) padding-box,
+                linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(6, 182, 212, 0.2)) border-box;
+            border: 1px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .hero-glitch {
-            font-size: 3rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-             margin-top: 1.4em;
-            background: linear-gradient(135deg, var(--branco-puro), var(--ciano-tecnologico));
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 180, 216, 0.4);
-            line-height: 1.2;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Filtros de Categoria */
-        .portfolio-filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            padding: 0 1rem;
-        }
-
-        .filter-btn {
-            background: rgba(30, 58, 95, 0.5);
-            color: var(--cinza-light);
-            border: 1px solid rgba(0, 180, 216, 0.3);
-            padding: 0.6rem 1.2rem;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .filter-btn.active,
-        .filter-btn:hover {
-            background: var(--ciano-tecnologico);
-            color: var(--azul-profundo);
-            border-color: var(--ciano-tecnologico);
-        }
-
-        /* Grid de Portfólio */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            padding: 0 1rem 5rem;
-        }
-
-        .portfolio-item {
-            background: rgba(30, 58, 95, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 180, 216, 0.3);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            position: relative;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        .portfolio-item.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 180, 216, 0.2);
-            border-color: var(--ciano-tecnologico);
-        }
-
-        .portfolio-img {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #1E3A5F, #0D1B2A);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .portfolio-img i {
-            font-size: 4rem;
-            color: var(--ciano-tecnologico);
-            z-index: 2;
-        }
-
-        .portfolio-img::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(0, 180, 216, 0.1), transparent);
-            transform: translateX(-100%);
-        }
-
-        .portfolio-item:hover .portfolio-img::after {
-            animation: shine 1.5s;
-        }
-
-        @keyframes shine {
-            0% {
-                transform: translateX(-100%);
-            }
-
-            100% {
-                transform: translateX(100%);
-            }
-        }
-
-        .portfolio-content {
-            padding: 1.5rem;
-        }
-
-        .portfolio-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-            color: var(--branco-puro);
-        }
-
-        .portfolio-category {
-            display: inline-block;
-            background: rgba(0, 180, 216, 0.2);
-            color: var(--ciano-tecnologico);
-            padding: 0.3rem 0.8rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .portfolio-desc {
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .portfolio-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tech-tag {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--cinza-light);
-            padding: 0.3rem 0.6rem;
-            border-radius: 10px;
-            font-size: 0.8rem;
-        }
-
-        .portfolio-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--ciano-tecnologico);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .portfolio-link:hover {
-            gap: 0.8rem;
-            text-shadow: 0 0 10px rgba(0, 180, 216, 0.5);
-        }
-
-        /* Botão Flutuante do WhatsApp */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
-            z-index: 999;
-            transition: all 0.3s ease;
-            animation: pulse-whatsapp 2s infinite;
-        }
-
-        @keyframes pulse-whatsapp {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.08);
-            }
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.12);
-            box-shadow: 0 0 25px rgba(37, 211, 102, 0.8);
-        }
-
-        .whatsapp-tooltip {
-            display: none;
-        }
-
-        /* Navegação Desktop */
-        .nav-immersive {
-            position: fixed;
-            top: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(13, 27, 42, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--ciano-tecnologico);
-            border-radius: 50px;
-            padding: 1rem 2rem;
-            z-index: 1000;
-            display: none;
-            align-items: center;
-            gap: 3rem;
-            box-shadow: 0 0 30px rgba(0, 180, 216, 0.3);
-        }
-
-        /* Media Queries para tablets */
-        @media (min-width: 768px) {
-            .container {
-                padding: 0 2rem;
-            }
-
-            .hero-glitch {
-                font-size: 3.5rem;
-                 margin-top: 1.4em;
-            }
-
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-            }
-
-            .portfolio-filters {
-                gap: 1.5rem;
-            }
-        }
-
-        /* Media Queries para desktop */
-        @media (min-width: 1024px) {
-            .nav-mobile-header {
-                display: none;
-            }
-
-            .nav-immersive {
-                display: flex;
-            }
-
-            .nav-hologram-Desktop {
-                position: static;
-                width: auto;
-                height: auto;
-                background: transparent;
-                border: none;
-                padding: 0;
-                flex-direction: row;
-                gap: 2.5rem;
-
-            }
-
-            .nav-hologram {
-                position: static;
-                width: auto;
-                height: auto;
-                background: transparent;
-                border: none;
-                padding: 0;
-                flex-direction: row;
-                gap: 2.5rem;
-            }
-
-            .nav-hologram-Desktop a {
-                border: none;
-                padding: 0;
-                font-size: 1rem;
-            }
-
-            .nav-hologram a {
-                border: none;
-                padding: 0;
-                font-size: 1rem;
-            }
-
-            .close-menu {
-                display: none;
-            }
-
-            .menu-toggle {
-                display: none;
-            }
-
-            .hero-glitch {
-                font-size: 4rem;
-                margin-top: 1.4em;
-            }
-
-            .portfolio-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 2.5rem;
-            }
-
-            .portfolio-img {
-                height: 250px;
-            }
-
-            .whatsapp-tooltip {
-                display: block;
-                position: absolute;
-                right: 65px;
-                background: var(--azul-profundo);
-                color: white;
-                padding: 0.6rem 1.2rem;
-                border-radius: 20px;
-                font-weight: 500;
-                opacity: 0;
-                transform: translateX(20px);
-                transition: all 0.3s ease;
-                pointer-events: none;
-                white-space: nowrap;
-                font-size: 0.9rem;
-            }
-
-            .whatsapp-float:hover .whatsapp-tooltip {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Melhorias para telas muito grandes */
-        @media (min-width: 1400px) {
-            .hero-glitch {
-                font-size: 4.5rem;
-                margin-top: 1.4em;
-            }
-
-            .portfolio-grid {
-                gap: 3rem;
-            }
-        }
-
-        /* Ajustes para modo paisagem em mobile */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .portfolio-hero {
-                padding: 8rem 0 2rem;
-                min-height: auto;
-            }
-
-            .nav-mobile-header {
-                top: 0.5rem;
-                padding: 0.8rem;
-            }
+        .glow-border:hover {
+            background: linear-gradient(#0c1322, #0c1322) padding-box,
+                linear-gradient(135deg, #2563eb, #06b6d4) border-box;
+            box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.25);
+            transform: translateY(-4px);
         }
     </style>
+    <!-- GSAP (GreenSock) CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 
-<body>
-    <!-- Efeito de Partículas Futuristas -->
-    <div id="particles-js"></div>
+<body
+    class="bg-techDark text-slate-200 font-sans antialiased overflow-x-hidden selection:bg-techCyan/30 selection:text-white">
 
-    <!-- Navegação Mobile -->
-    <nav class="nav-mobile-header">
-        <a href="./index.html" class="logo-nexus">
-            <i class="fas fa-arrow-left" style="margin-right: 10px;"></i>
-            DOT<span class="logo-dot">•</span>INC<span style="font-size: 0.8em; margin-left: 0.2em;">BR</span>
-        </a>
-        <button class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
-        </button>
-    </nav>
-
-    <!-- Menu Mobile -->
-    <nav class="nav-hologram" id="mobileMenu">
-        <button class="close-menu" id="closeMenu">
-            <i class="fas fa-times"></i>
-        </button>
-        <a href="./index.html">Home</a>
-        <a href="./index.html#services">Serviços</a>
-        <a href="./portifolio.html" style="color: var(--ciano-tecnologico);">Portfólio</a>
-        <a href="./sobre.html">Sobre</a>
-        <a href="./contato.html">Contato</a>
-    </nav>
-
-    <!-- Navegação Desktop -->
-    <nav class="nav-immersive">
-        <a href="./index.html" class="logo-nexus">
-            DOT<span class="logo-dot">•</span>INC<span style="font-size: 0.9em; margin-left: 0.2em;">BR</span>
-        </a>
-        <div class="nav-hologram-Desktop">
-            <a href="./index.html">Home</a>
-            <a href="./index.html#services">Serviços</a>
-            <a href="./portfolio.html" style="color: var(--ciano-tecnologico);">Portfólio</a>
-            <a href="./sobre.html">Sobre</a>
-            <a href="./contato.html">Contato</a>
-        </div>
-        <a href="./contato.html" class="btn-cyber">Iniciar Projeto</a>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="portfolio-hero">
-        <div class="container">
-            <h1 class="hero-glitch">PORTFÓLIO DE PROJETOS</h1>
-            <p class="hero-subtitle">Conheça nossas soluções inovadoras em desenvolvimento .NET, aplicativos MAUI e
-                plataformas web de alto desempenho</p>
-
-            <div class="portfolio-filters">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="web">Sites & Web Apps</button>
-                <button class="filter-btn" data-filter="maui">Apps MAUI</button>
-                <button class="filter-btn" data-filter="system">Sistemas .NET</button>
+    <!-- Preloader Dark Tech Modern -->
+    <div id="preloader"
+        class="fixed inset-0 z-[9999] bg-techDark flex flex-col items-center justify-center pointer-events-auto transition-all duration-700">
+        <div class="flex flex-col items-center gap-6">
+            <span class="font-outfit text-3xl font-bold tracking-tight text-white select-none">
+                DOT<span class="text-techCyan animate-pulse">•</span>INC<span
+                    class="text-xs bg-techBlue/25 border border-techBlue/50 text-techCyan px-1.5 py-0.5 rounded font-mono font-medium ml-1">BR</span>
+            </span>
+            <div
+                class="w-48 h-1 bg-slate-900 rounded-full overflow-hidden border border-slate-800/40 relative shadow-inner">
+                <div id="preloader-bar"
+                    class="h-full w-0 bg-gradient-to-r from-techCyan via-techBlue to-indigo-500 rounded-full shadow-neon-cyan transition-all duration-300">
+                </div>
             </div>
+            <span class="text-[10px] font-mono text-slate-500 tracking-widest uppercase"
+                id="preloader-status">INICIALIZANDO SISTEMA...</span>
+        </div>
+    </div>
+
+    <!-- Navegação Imersiva -->
+    <header
+        class="fixed top-0 left-0 w-full z-50 bg-techDark/75 backdrop-blur-md border-b border-slate-800/40 transition duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="./index.html"
+                class="font-outfit text-xl font-bold tracking-tight text-white flex items-center gap-1 hover:opacity-90 transition">
+                DOT<span class="text-techCyan animate-pulse">•</span>INC<span
+                    class="text-xs bg-techBlue/25 border border-techBlue/50 text-techCyan px-1.5 py-0.5 rounded font-mono font-medium ml-1">BR</span>
+            </a>
+
+            <!-- Menu Desktop -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="./index.html#dores" class="hover:text-white transition">Problemas</a>
+                <a href="./index.html#como-funciona" class="hover:text-white transition">Como Funciona</a>
+                <a href="#" class="text-white transition font-semibold">Portfólio</a>
+                <a href="./sobre.html" class="hover:text-white transition">Sobre</a>
+                <a href="./index.html#contato" class="hover:text-white transition">Diagnóstico</a>
+            </nav>
+
+            <div class="hidden md:block">
+                <a href="./index.html#contato"
+                    class="bg-slate-900 border border-slate-700/80 hover:border-techCyan text-white text-sm font-semibold py-2 px-5 rounded-full transition duration-300 shadow-sm flex items-center gap-2">
+                    Falar com Desenvolvedor <i class="fa-solid fa-arrow-right text-xs text-techCyan"></i>
+                </a>
+            </div>
+
+            <!-- Botão Mobile -->
+            <button class="md:hidden text-slate-300 hover:text-white focus:outline-none" id="mobile-menu-btn"
+                aria-label="Abrir Menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Menu Mobile Modal -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-techDark/98 backdrop-blur-lg z-50 flex flex-col justify-between p-8 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+        <div>
+            <div class="flex items-center justify-between mb-12">
+                <span class="font-outfit text-xl font-bold tracking-tight text-white">
+                    DOT<span class="text-techCyan">•</span>INC<span
+                        class="text-xs text-techCyan/80 font-mono ml-1">BR</span>
+                </span>
+                <button class="text-slate-300 hover:text-white" id="mobile-menu-close" aria-label="Fechar Menu">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col gap-6 text-xl font-outfit font-semibold text-slate-300">
+                <a href="./index.html#dores" class="hover:text-techCyan transition py-2 border-b border-slate-800/50">Problemas</a>
+                <a href="./index.html#como-funciona"
+                    class="hover:text-techCyan transition py-2 border-b border-slate-800/50">Como Funciona</a>
+                <a href="#" class="hover:text-techCyan transition py-2 border-b border-slate-800/50 text-white font-bold">Portfólio</a>
+                <a href="./sobre.html"
+                    class="hover:text-techCyan transition py-2 border-b border-slate-800/50">Sobre</a>
+                <a href="./index.html#contato"
+                    class="hover:text-techCyan transition py-2 border-b border-slate-800/50">Diagnóstico</a>
+            </nav>
+        </div>
+        <div class="flex flex-col gap-4">
+            <a href="https://wa.me/5511970797269?text=Ol%C3%A1%20Bruno,%20gostaria%20de%20conversar%20sobre%20um%20projeto."
+                target="_blank"
+                class="w-full text-center bg-emerald-500 hover:bg-white hover:text-techBlue text-white font-medium py-4 px-8 rounded-xl transition duration-300 flex items-center justify-center gap-2 text-lg">
+                <i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp Direto
+            </a>
+            <a href="./index.html#contato" id="close-menu-cta"
+                class="w-full text-center bg-techCyan hover:bg-cyan-500 text-techDark font-bold py-3 px-6 rounded-xl transition">
+                Falar com Desenvolvedor
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero / Cabeçalho -->
+    <section class="relative pt-32 pb-16 md:pt-48 md:pb-24 overflow-hidden flex items-center text-center">
+        <div
+            class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-techBlue/10 rounded-full blur-[100px] pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-10 right-10 w-[450px] h-[450px] bg-techCyan/10 rounded-full blur-[120px] pointer-events-none">
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-techCyan mb-6 uppercase tracking-wider">
+                <i class="fa-solid fa-folder-open"></i> Nossos Projetos
+            </div>
+            <h1 class="font-outfit text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight mb-8">
+                Portfólio de <span
+                    class="bg-gradient-to-r from-techCyan via-techBlue to-indigo-500 bg-clip-text text-transparent">Projetos
+                    de Software</span>
+            </h1>
+            <p class="text-slate-400 text-lg md:text-xl font-normal leading-relaxed max-w-2xl mx-auto">
+                Conheça nossas soluções sob medida desenvolvidas, aplicativos mobile Android, automações e plataformas e
+                sites de alto desempenho.
+            </p>
         </div>
     </section>
 
-    <!-- Grid de Portfólio -->
-    <div class="container">
-        <div class="portfolio-grid" id="portfolioGrid">
-            <!-- Projeto 1
-            <div class="portfolio-item" data-category="web">
-                <div class="portfolio-img">
-                    <i class="fas fa-shopping-cart"></i>
-                </div>
-                <div class="portfolio-content">
-                    <span class="portfolio-category">E-commerce</span>
-                    <h3 class="portfolio-title">Loja Virtual Premium</h3>
-                    <p class="portfolio-desc">Plataforma de e-commerce completa com integração de pagamentos, gestão de
-                        estoque e painel administrativo.</p>
-                    <div class="portfolio-tech">
-                        <span class="tech-tag">ASP.NET Core</span>
-                        <span class="tech-tag">Blazor</span>
-                        <span class="tech-tag">SQL Server</span>
-                    </div>
-                    <a href="projeto-loja-virtual.html" class="portfolio-link">
-                        Ver Detalhes <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div> -->
-
-            <!-- Projeto 2 -->
-            <!-- <div class="portfolio-item" data-category="maui">
-                <div class="portfolio-img">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="portfolio-content">
-                    <span class="portfolio-category">App Mobile</span>
-                    <h3 class="portfolio-title">App de Gestão Financeira</h3>
-                    <p class="portfolio-desc">Aplicativo para controle de finanças pessoais com sincronização em nuvem e
-                        relatórios detalhados.</p>
-                    <div class="portfolio-tech">
-                        <span class="tech-tag">.NET MAUI</span>
-                        <span class="tech-tag">XAML</span>
-                        <span class="tech-tag">Azure</span>
-                    </div>
-                    <a href="projeto-app-financas.html" class="portfolio-link">
-                        Ver Detalhes <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div> -->
-
-            <!-- Projeto 3 -->
-            <!-- <div class="portfolio-item" data-category="system">
-                <div class="portfolio-img">
-                    <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="portfolio-content">
-                    <span class="portfolio-category">Sistema Corporativo</span>
-                    <h3 class="portfolio-title">ERP Personalizado</h3>
-                    <p class="portfolio-desc">Sistema de gestão.</p>
-                    <div class="portfolio-tech">
-                        <span class="tech-tag">C#</span>
-                        <span class="tech-tag">Blazor</span>
-                        <span class="tech-tag">SQL</span>
-                    </div>
-                    <a href="projeto-erp.html" class="portfolio-link">
-                        Ver Detalhes <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
-            </div> -->
-
-            <!-- Projeto 4 -->
-            <div class="portfolio-item" data-category="web">
-                <div class="portfolio-img">
-                 <i class="fa-solid fa-globe"></i>
-                </div>
-                <div class="portfolio-content">
-                    <span class="portfolio-category">Web</span>
-                    <h3 class="portfolio-title">Sites Institucionais</h3>
-                    <p class="portfolio-desc">Sites que descrevem a identidade da empresa e marcam sua presença no digital.</p>
-                    <div class="portfolio-tech">
-                        <span class="tech-tag">HTML</span>
-                        <span class="tech-tag">CSS</span>
-                        <span class="tech-tag">JavaScript</span>
-                    </div>
-                    <!-- <a href="#" class="portfolio-link">
-                        Ver Detalhes <i class="fas fa-arrow-right"></i>
-                    </a> -->
-                </div>
-            </div>
-
-            <!-- Projeto 5 -->
-            <div class="portfolio-item" data-category="web">
-                <div class="portfolio-img">
-                  <i class="fa-solid fa-school"></i>
-                </div>
-                <div class="portfolio-content">
-                    <span class="portfolio-category">Sistema de Gestão de Cursos Extras</span>
-                    <h3 class="portfolio-title">Gestão de Cursos Extras</h3>
-                    <p class="portfolio-desc">Sistema que oferece cursos extras para os pais dos alunos, e gerencias as ofertas e confimações de turma.</p>
-                    <div class="portfolio-tech">
-                        <span class="tech-tag">ASP.NET CORE</span>
-                        <span class="tech-tag">DDD</span>
-                        <span class="tech-tag">SQL</span>
-                        <span class="tech-tag">Blazor WASM</span>
-                    </div>
-                    <!-- <a href="projeto-app-fitness.html" class="portfolio-link">
-                        Ver Detalhes <i class="fas fa-arrow-right"></i>
-                    </a> -->
-                </div>
-            </div>
-
-            <!-- Projeto 6 -->
-            <div class="portfolio-item" data-category="system">
-                <div class="portfolio-img">
-                    <i class="fas fa-clipboard-list"></i>
-                </div>
-                <div class="portfolio-content">
-                    <span class="portfolio-category">Sistema de Gestão</span>
-                    <h3 class="portfolio-title">Sistema Transacionais</h3>
-                    <p class="portfolio-desc">Sistema para gerenciamento.</p>
-                    <div class="portfolio-tech">
-                        <span class="tech-tag">WinForms</span>
-                        <span class="tech-tag">Web API</span>
-                        <span class="tech-tag">SQL Server</span>
-                    </div>
-                    <!-- <a href="./projeto-chamados.html" class="portfolio-link">
-                        Ver Detalhes <i class="fas fa-arrow-right"></i>
-                    </a> -->
-                </div>
-            </div>
-
-            <!--   <div class="portfolio-item" data-category="categoria">
-    <div class="portfolio-img">
-        <i class="fas fa-icone"></i>
-    </div>
-    <div class="portfolio-content">
-        <span class="portfolio-category">Categoria</span>
-        <h3 class="portfolio-title">Título do Projeto</h3>
-        <p class="portfolio-desc">Descrição do projeto...</p>
-        <div class="portfolio-tech">
-            <span class="tech-tag">Tecnologia 1</span>
-            <span class="tech-tag">Tecnologia 2</span>
-        </div>
-        <a href="pagina-do-projeto.html" class="portfolio-link">
-            Ver Detalhes <i class="fas fa-arrow-right"></i>
-        </a>
-    </div>
-</div>-->
+    <!-- Filtros de Categorias -->
+    <div class="max-w-7xl mx-auto px-6 mb-16 relative z-10">
+        <div class="flex flex-wrap items-center justify-center gap-4" id="portfolio-filters">
+            <button
+                class="filter-btn px-6 py-2 rounded-full border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-white hover:border-slate-700 transition font-medium text-sm active bg-techCyan/25 border-techCyan/50 text-techCyan hover:text-techCyan"
+                data-filter="all">Todos</button>
+            <button
+                class="filter-btn px-6 py-2 rounded-full border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-white hover:border-slate-700 transition font-medium text-sm"
+                data-filter="web">Sites & Web Apps</button>
+            <button
+                class="filter-btn px-6 py-2 rounded-full border border-slate-800 bg-slate-900/60 text-slate-400 hover:text-white hover:border-slate-700 transition font-medium text-sm"
+                data-filter="system">Sistemas .NET</button>
         </div>
     </div>
+
+    <!-- Grid de Projetos -->
+    <section class="max-w-7xl mx-auto px-6 pb-32 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="portfolio-grid">
+
+            <!-- Projeto 1: Sites Institucionais (Web) -->
+            <div class="portfolio-item glow-border rounded-2xl p-8 flex flex-col justify-between min-h-[360px]"
+                data-category="web">
+                <div>
+                    <div
+                        class="w-12 h-12 bg-techCyan/10 border border-techCyan/20 text-techCyan rounded-xl flex items-center justify-center mb-6 text-xl">
+                        <i class="fa-solid fa-globe"></i>
+                    </div>
+                    <span
+                        class="inline-block bg-techCyan/10 text-techCyan text-[11px] font-mono px-2 py-0.5 rounded-full mb-4">WEBSITES</span>
+                    <h3 class="font-outfit text-xl font-bold text-white mb-3">Sites Institucionais</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Criação de páginas que descrevem perfeitamente a identidade de mercado da empresa, estruturados
+                        para garantir excelente posicionamento digital, autoridade de marca e performance.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">HTML5</span>
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">CSS3</span>
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">JAVASCRIPT</span>
+                    </div>
+                    <a href="./index.html#contato"
+                        class="inline-flex items-center gap-1.5 text-xs font-semibold text-techCyan hover:underline">
+                        Solicitar Orçamento <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Projeto 3: Sistemas Transacionais (Sistemas .NET) -->
+            <div class="portfolio-item glow-border rounded-2xl p-8 flex flex-col justify-between min-h-[360px]"
+                data-category="system">
+                <div>
+                    <div
+                        class="w-12 h-12 bg-techBlue/10 border border-techBlue/20 text-techCyan rounded-xl flex items-center justify-center mb-6 text-xl">
+                        <i class="fa-solid fa-clipboard-list"></i>
+                    </div>
+                    <span
+                        class="inline-block bg-techBlue/10 text-techCyan text-[11px] font-mono px-2 py-0.5 rounded-full mb-4">DESKTOP
+                        / CORPORATIVO</span>
+                    <h3 class="font-outfit text-xl font-bold text-white mb-3">Sistemas Transacionais</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Sistemas de gestão interna de alta velocidade construídos sob medida para controle de fluxos,
+                        contabilidade de faturamento corporativo, emissão de relatórios fiscais e controle de estoque
+                        centralizado.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">C#
+                            / WinForms</span>
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">WEB
+                            API</span>
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">SQL
+                            SERVER</span>
+                    </div>
+                    <a href="./index.html#contato"
+                        class="inline-flex items-center gap-1.5 text-xs font-semibold text-techCyan hover:underline">
+                        Solicitar Orçamento <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Projeto 4: Eletromecânica Bazan (Web) -->
+            <div class="portfolio-item glow-border rounded-2xl p-8 flex flex-col justify-between min-h-[360px]"
+                data-category="web">
+                <div>
+                    <div
+                        class="w-12 h-12 bg-techCyan/10 border border-techCyan/20 text-techCyan rounded-xl flex items-center justify-center mb-6 text-xl">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <span
+                        class="inline-block bg-techCyan/10 text-techCyan text-[11px] font-mono px-2 py-0.5 rounded-full mb-4">WEBSITE
+                        / B2B</span>
+                    <h3 class="font-outfit text-xl font-bold text-white mb-3">Eletromecânica Bazan</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Website institucional desenvolvido para a Eletromecânica Bazan, apresentando serviços
+                        especializados em engenharia elétrica e manutenção industrial de forma moderna e responsiva.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">HTML5</span>
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">CSS3</span>
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">JAVASCRIPT</span>
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">SEO</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <a href="https://www.eletromecanicabazan.com.br/" target="_blank"
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-techCyan hover:text-white transition">
+                            Visitar Website <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                        <span class="text-slate-800">|</span>
+                        <a href="./index.html#contato"
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-350 hover:underline transition">
+                            Orçamento
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projeto 5: Dra. Mayara Akemi (Web) -->
+            <div class="portfolio-item glow-border rounded-2xl p-8 flex flex-col justify-between min-h-[360px]"
+                data-category="web">
+                <div>
+                    <div
+                        class="w-12 h-12 bg-techCyan/10 border border-techCyan/20 text-techCyan rounded-xl flex items-center justify-center mb-6 text-xl">
+                        <i class="fa-solid fa-stethoscope"></i>
+                    </div>
+                    <span
+                        class="inline-block bg-techCyan/10 text-techCyan text-[11px] font-mono px-2 py-0.5 rounded-full mb-4">LANDING
+                        PAGE / SAÚDE</span>
+                    <h3 class="font-outfit text-xl font-bold text-white mb-3">Dra. Mayara Akemi</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Plataforma premium e elegante desenvolvida para apresentação de serviços médicos e
+                        odontológicos, com foco na captação e agendamento simplificado de consultas.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">HTML5</span>
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">TAILWIND
+                            CSS</span>
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">JAVASCRIPT</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <a href="https://dramayaraakemi.com.br/" target="_blank"
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-techCyan hover:text-white transition">
+                            Visitar Website <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                        <span class="text-slate-800">|</span>
+                        <a href="./index.html#contato"
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-350 hover:underline transition">
+                            Orçamento
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projeto 6: Espaço Estruturamente (Web) -->
+            <div class="portfolio-item glow-border rounded-2xl p-8 flex flex-col justify-between min-h-[360px]"
+                data-category="web">
+                <div>
+                    <div
+                        class="w-12 h-12 bg-techGreen/10 border border-techGreen/20 text-techGreen rounded-xl flex items-center justify-center mb-6 text-xl">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <span
+                        class="inline-block bg-techGreen/10 text-techGreen text-[11px] font-mono px-2 py-0.5 rounded-full mb-4">PORTAL
+                        / BEM-ESTAR</span>
+                    <h3 class="font-outfit text-xl font-bold text-white mb-3">Espaço Estruturamente</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Website acolhedor projetado para a clínica Espaço Estruturamente, integrando canais de
+                        atendimento para terapia, psicologia e saúde mental.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">HTML5</span>
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">TAILWIND
+                            CSS</span>
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">RESPONSIVO</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <a href="https://espacoestruturamente.com.br/" target="_blank"
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-techCyan hover:text-white transition">
+                            Visitar Website <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                        <span class="text-slate-800">|</span>
+                        <a href="./index.html#contato"
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-350 hover:underline transition">
+                            Orçamento
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projeto 7: Studioflow (Web) -->
+            <div class="portfolio-item glow-border rounded-2xl p-8 flex flex-col justify-between min-h-[360px]"
+                data-category="web">
+                <div>
+                    <div
+                        class="w-12 h-12 bg-techBlue/10 border border-techBlue/20 text-techCyan rounded-xl flex items-center justify-center mb-6 text-xl">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <span
+                        class="inline-block bg-techBlue/10 text-techCyan text-[11px] font-mono px-2 py-0.5 rounded-full mb-4">WEB
+                        APP / AGENDAMENTO</span>
+                    <h3 class="font-outfit text-xl font-bold text-white mb-3">Studioflow</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                        Painel interativo e sistema web para automação de agendamentos e controle de fluxos em estúdios
+                        de bem-estar e Pilates.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">VUE.JS</span>
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">TAILWIND</span>
+                        <span
+                            class="bg-slate-950 text-slate-500 text-[10px] font-mono px-2.5 py-1 rounded border border-slate-900">WEB
+                            APP</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <a href="https://studioflow-staging-web-studioflow.vu5glq.easypanel.host/" target="_blank"
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-techCyan hover:text-white transition">
+                            Visitar WebApp <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                        <span class="text-slate-800">|</span>
+                        <a href="./index.html#contato"
+                            class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-slate-350 hover:underline transition">
+                            Orçamento
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="border-t border-slate-900 py-16 text-slate-500 text-sm"
+        style="background:#071739;position:relative;z-index:2;">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+
+                <div class="md:col-span-1">
+                    <span class="font-outfit text-lg font-bold tracking-tight text-white block mb-4">
+                        DOT<span class="text-techCyan">•</span>INC<span
+                            class="text-xs text-techCyan/80 font-mono ml-1">BR</span>
+                    </span>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                        Desenvolvimento de software e automação de sistemas focada em otimização de processos,
+                        resultanto em mais tempo e faturamento, atuando
+                        de forma próxima nas regiões do ABC Paulista, Ribeirão Pires.
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <a href="https://www.instagram.com/dotincbr" target="_blank"
+                            class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-white hover:border-slate-700 transition"
+                            aria-label="Instagram">
+                            <i class="fa-brands fa-instagram text-xs"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/dotincbr" target="_blank"
+                            class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-white hover:border-slate-700 transition"
+                            aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in text-xs"></i>
+                        </a>
+                        <a href="https://github.com/Brun0DevMimura" target="_blank"
+                            class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-white hover:border-slate-700 transition"
+                            aria-label="GitHub">
+                            <i class="fa-brands fa-github text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:col-span-1">
+                    <h5 class="text-white font-semibold text-xs tracking-wider uppercase mb-4">Área de Atuação</h5>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li>Automação Software</li>
+                        <li>Sistemas Web e CRM</li>
+                        <li>Integração de Sistemas e APIs</li>
+                        <li>Desenvolvimento de Software</li>
+                        <li>WhatsApp Automation</li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-1">
+                    <h5 class="text-white font-semibold text-xs tracking-wider uppercase mb-4">Navegação</h5>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="./index.html#dores" class="hover:text-white transition">Dores que Eliminamos</a></li>
+                        <li><a href="./index.html#como-funciona" class="hover:text-white transition">Fluxo de Trabalho</a></li>
+                        <li><a href="#" class="hover:text-white transition font-semibold text-white">Nosso Portfólio</a></li>
+                        <li><a href="./sobre.html" class="hover:text-white transition">Sobre a DotInc</a></li>
+                        <li><a href="./index.html#contato" class="hover:text-white transition">Diagnóstico Grátis</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-1">
+                    <h5 class="text-white font-semibold text-xs tracking-wider uppercase mb-4">Contato Técnico</h5>
+                    <ul class="space-y-3 text-xs text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-techCyan"></i>
+                            <span>dot.inc.care@gmail.com</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-techCyan"></i>
+                            <span>(11) 97079-7269</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-techCyan"></i>
+                            <span>Ribeirão Pires, SP - Brasil</span>
+                        </li>
+                        <li class="pt-2">
+                            <a href="./cartao.html"
+                                class="inline-flex items-center gap-2 bg-slate-900/60 hover:bg-slate-900 border border-slate-800 hover:border-techBlue text-white text-xs font-semibold py-2 px-4 rounded-xl transition duration-300 shadow-sm group">
+                                <i
+                                    class="fa-solid fa-address-card text-techBlue group-hover:scale-110 transition-transform"></i>
+                                Cartão de Visitas Digital
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div
+                class="pt-8 border-t border-slate-900 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+                <p>&copy; 2026 DotIncBR. Todos os direitos reservados. Ribeirão Pires, Mauá, Suzano, Grande ABC, Alto
+                    Tietê.</p>
+                <div class="flex items-center gap-4">
+                    <a href="/politica-de-privacidade" class="hover:text-slate-400 transition">Política de
+                        Privacidade</a>
+                    <span>|</span>
+                    <a href="/termos-de-uso" class="hover:text-slate-400 transition">Termos de Uso</a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
 
     <!-- Botão Flutuante do WhatsApp -->
-    <a href="https://wa.me/5511970797269?text=Olá%20Bruno,%20gostaria%20de%20conversar%20sobre%20um%20projeto"
-        class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-        <span class="whatsapp-tooltip">Fale diretamente comigo!</span>
+    <a href="https://wa.me/5511970797269?text=Ol%C3%A1%20Bruno,%20gostaria%20de%20conversar%20sobre%20um%20projeto."
+        class="fixed bottom-6 right-6 w-14 h-14 bg-emerald-500 hover:bg-white hover:text-techBlue text-white rounded-full flex items-center justify-center text-2xl shadow-neon-green hover:scale-105 transition duration-300 z-40 group"
+        target="_blank" aria-label="WhatsApp Corporativo">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span
+            class="absolute right-16 bg-slate-900 border border-slate-800 text-xs font-medium text-slate-200 py-1.5 px-3 rounded-lg shadow-md whitespace-nowrap opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition duration-300 pointer-events-none">
+            Fale conosco no WhatsApp!
+        </span>
     </a>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Controle do menu mobile
-        const menuToggle = document.getElementById('menuToggle');
-        const closeMenu = document.getElementById('closeMenu');
-        const mobileMenu = document.getElementById('mobileMenu');
+        document.addEventListener('DOMContentLoaded', () => {
 
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
+            // Menu Mobile
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenuCta = document.getElementById('close-menu-cta');
+            const mobileLinks = mobileMenu.querySelectorAll('nav a');
 
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
+            const openMenu = () => {
+                mobileMenu.classList.remove('translate-x-full');
+                document.body.classList.add('overflow-hidden');
+            };
 
-        // Fechar menu ao clicar em links
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            });
-        });
+            const closeMenu = () => {
+                mobileMenu.classList.add('translate-x-full');
+                document.body.classList.remove('overflow-hidden');
+            };
 
-        // Configuração das partículas
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 60, density: { enable: true, value_area: 800 } },
-                color: { value: "#00B4D8" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#00B4D8",
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: "none",
-                    random: true,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "grab" },
-                    onclick: { enable: true, mode: "push" },
-                    resize: true
-                }
-            }
-        });
+            mobileMenuBtn.addEventListener('click', openMenu);
+            mobileMenuClose.addEventListener('click', closeMenu);
+            closeMenuCta.addEventListener('click', closeMenu);
+            mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
 
-        // Filtros do portfólio
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
+            // Filtros do Portfólio
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove a classe active de todos os botões
-                filterButtons.forEach(btn => btn.classList.remove('active'));
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remover classes ativas de todos
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-techCyan/25', 'border-techCyan/50', 'text-techCyan');
+                        btn.classList.add('text-slate-400', 'border-slate-800');
+                    });
 
-                // Adiciona a classe active ao botão clicado
-                button.classList.add('active');
+                    // Adicionar classe ativa no clicado
+                    button.classList.add('active', 'bg-techCyan/25', 'border-techCyan/50', 'text-techCyan');
+                    button.classList.remove('text-slate-400', 'border-slate-800');
 
-                // Obtém o filtro selecionado
-                const filter = button.getAttribute('data-filter');
+                    const filter = button.getAttribute('data-filter');
 
-                // Filtra os itens do portfólio
-                portfolioItems.forEach(item => {
-                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
+                    portfolioItems.forEach(item => {
+                        const category = item.getAttribute('data-category');
+                        if (filter === 'all' || category === filter) {
+                            item.style.display = 'flex';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateY(0)';
+                            }, 50);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'translateY(15px)';
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
                 });
             });
-        });
 
-        // Animação de scroll para os itens do portfólio
-        function checkScroll() {
-            const items = document.querySelectorAll('.portfolio-item');
+            // Lógica do Preloader B2B
+            const preloader = document.getElementById('preloader');
+            const preloaderBar = document.getElementById('preloader-bar');
+            const preloaderStatus = document.getElementById('preloader-status');
 
-            items.forEach(item => {
-                const position = item.getBoundingClientRect();
-
-                // Se o item estiver visível na tela
-                if (position.top < window.innerHeight - 100) {
-                    item.classList.add('visible');
-                }
-            });
-        }
-
-        // Verificar itens visíveis ao carregar e ao scrollar
-        window.addEventListener('load', checkScroll);
-        window.addEventListener('scroll', checkScroll);
-
-        // Mostrar navegação desktop em telas grandes
-        function checkScreenSize() {
-            const navImmersive = document.querySelector('.nav-immersive');
-            const navMobile = document.querySelector('.nav-mobile-header');
-
-            if (window.innerWidth >= 1024) {
-                navImmersive.style.display = 'flex';
-                navMobile.style.display = 'none';
-            } else {
-                navImmersive.style.display = 'none';
-                navMobile.style.display = 'flex';
-            }
-        }
-
-        // Inicializar e monitorar tamanho da tela
-        checkScreenSize();
-        window.addEventListener('resize', checkScreenSize);
-
-         // Efeito de digitação no título
-        document.addEventListener('DOMContentLoaded', function () {
-            const heroText = document.querySelector('.hero-glitch');
-            if (heroText && window.innerWidth > 768) {
-                const originalText = heroText.textContent;
-                heroText.textContent = '';
-
-                let i = 0;
-                const typeWriter = () => {
-                    if (i < originalText.length) {
-                        heroText.textContent += originalText.charAt(i);
-                        i++;
-                        setTimeout(typeWriter, 50);
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                if (progress < 85) {
+                    progress += Math.random() * 15;
+                    if (progress > 85) progress = 85;
+                    preloaderBar.style.width = `${progress}%`;
+                    if (progress > 40 && progress < 70) {
+                        preloaderStatus.textContent = "CARREGANDO MÓDULOS...";
+                    } else if (progress >= 70) {
+                        preloaderStatus.textContent = "CONECTANDO APIS...";
                     }
-                };
-                setTimeout(typeWriter, 1000);
-            }
+                }
+            }, 100);
+
+            const finishLoading = () => {
+                clearInterval(progressInterval);
+                preloaderBar.style.width = '100%';
+                preloaderStatus.textContent = "SISTEMA PRONTO";
+
+                setTimeout(() => {
+                    gsap.to(preloader, {
+                        opacity: 0,
+                        y: -40,
+                        duration: 0.6,
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            preloader.style.display = 'none';
+                            preloader.style.pointerEvents = 'none';
+                        }
+                    });
+                }, 300);
+            };
+
+            window.addEventListener('load', finishLoading);
+
+            // Fallback de segurança (2.5s)
+            setTimeout(() => {
+                if (preloader && preloader.style.display !== 'none') {
+                    finishLoading();
+                }
+            }, 2500);
+
         });
     </script>
 </body>

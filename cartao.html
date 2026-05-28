@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO e Otimizações de Compartilhamento -->
+    <title>Cartão Virtual | Bruno Yukio Mimura - DotIncBR</title>
+    <meta name="description" content="Entre em contato direto com Bruno Yukio Mimura, Co-fundador e Desenvolvedor de Software na DotIncBR. Fale via WhatsApp, Instagram, Facebook ou E-mail.">
+    <meta name="keywords" content="bruno mimura, dotincbr, ribeirão pires desenvolvedor, cartão digital, whatsapp desenvolvedor">
+    
+    <!-- Meta Tags Open Graph (Para visualização premium ao compartilhar o link) -->
+    <meta property="og:title" content="Cartão Digital de Bruno Yukio Mimura | DotIncBR">
+    <meta property="og:description" content="Conecte-se com nosso desenvolvedor. Projetos web, automações de processos e sistemas sob medida.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dotinc.com.br/cartao.html">
+    <meta property="og:image" content="https://dotinc.com.br/img/BrunoPerfil.jpg">
+    
+    <!-- Google Fonts: Outfit e Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        techDark: '#071739',      /* Deep Tech Navy */
+                        techCard: '#A4B5C4',      /* Muted Steel */
+                        techBlue: '#E3C39D',      /* Cyber Gold */
+                        techCyan: '#CDD5DB',      /* Cool Gray */
+                        techGreen: '#FFFFFF',     /* White */
+                    },
+                    boxShadow: {
+                        'neon-cyan': '0 0 20px rgba(205, 213, 219, 0.25)',
+                        'neon-blue': '0 0 20px rgba(227, 195, 157, 0.25)',
+                        'neon-whatsapp': '0 0 25px rgba(37, 211, 102, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome Ícones Premium -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Desabilitar rolagem para manter focado na tela cheia */
+        html, body {
+            overflow: hidden;
+            height: 100%;
+        }
+
+        /* Efeito de Gradiente de Borda Contínuo e Glow */
+        .glow-border {
+            position: relative;
+            background: linear-gradient(#071739, #071739) padding-box,
+                        linear-gradient(135deg, rgba(227, 195, 157, 0.3), rgba(205, 213, 219, 0.3)) border-box;
+            border: 1px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glow-border:hover {
+            background: linear-gradient(#091c42, #091c42) padding-box,
+                        linear-gradient(135deg, #E3C39D, #CDD5DB) border-box;
+            box-shadow: 0 15px 35px -10px rgba(227, 195, 157, 0.25);
+            transform: translateY(-4px);
+        }
+
+        /* 3D Wrapper */
+        .card-3d-wrap {
+            perspective: 1000px;
+        }
+        .card-3d {
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        /* Animação de Pulsar no botão do WhatsApp */
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(37, 211, 102, 0.7);
+            }
+        }
+        .cta-whatsapp-pulse {
+            animation: pulseGlow 2.5s infinite;
+        }
+
+        /* Efeito das meshes de neon flutuantes no fundo */
+        .ambient-glow {
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 0;
+            animation: moveGlow 22s infinite alternate ease-in-out;
+        }
+        .glow-1 {
+            background: #E3C39D; /* Gold */
+            top: -15%;
+            left: -15%;
+            animation-duration: 28s;
+        }
+        .glow-2 {
+            background: #2563eb; /* Blue */
+            bottom: -15%;
+            right: -15%;
+            animation-duration: 22s;
+        }
+        .glow-3 {
+            background: #CDD5DB; /* Gray */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulseCenterGlow 18s infinite ease-in-out;
+        }
+
+        @keyframes moveGlow {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(120px, 90px) scale(1.15);
+            }
+        }
+        @keyframes pulseCenterGlow {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(0.85);
+                opacity: 0.06;
+            }
+            50% {
+                transform: translate(-45%, -55%) scale(1.1);
+                opacity: 0.14;
+            }
+        }
+    </style>
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+
+<body class="bg-techDark text-slate-200 font-sans antialiased flex items-center justify-center min-h-screen relative selection:bg-techCyan/30 selection:text-white">
+
+    <!-- Preloader Dark Tech Modern -->
+    <div id="preloader" class="fixed inset-0 z-[9999] bg-techDark flex flex-col items-center justify-center pointer-events-auto transition-all duration-700">
+        <div class="flex flex-col items-center gap-6">
+            <span class="font-outfit text-3xl font-bold tracking-tight text-white select-none">
+                DOT<span class="text-techCyan animate-pulse">•</span>INC<span class="text-xs bg-techBlue/25 border border-techBlue/50 text-techCyan px-1.5 py-0.5 rounded font-mono font-medium ml-1">BR</span>
+            </span>
+            <div class="w-48 h-1 bg-slate-900 rounded-full overflow-hidden border border-slate-800/40 relative shadow-inner">
+                <div id="preloader-bar" class="h-full w-0 bg-gradient-to-r from-techCyan via-techBlue to-indigo-500 rounded-full shadow-neon-cyan transition-all duration-300"></div>
+            </div>
+            <span class="text-[10px] font-mono text-slate-500 tracking-widest uppercase" id="preloader-status">INICIALIZANDO CARTÃO...</span>
+        </div>
+    </div>
+
+    <!-- Meshes ambientais -->
+    <div class="ambient-glow glow-1"></div>
+    <div class="ambient-glow glow-2"></div>
+    <div class="ambient-glow glow-3"></div>
+
+    <!-- Card Wrapper -->
+    <main class="w-full max-w-md px-6 z-10 card-3d-wrap">
+        
+        <!-- Cartão Virtual Premium -->
+        <div class="card-3d glow-border rounded-3xl p-8 backdrop-blur-md bg-slate-950/70 shadow-2xl relative overflow-hidden flex flex-col items-center text-center">
+            
+            <!-- Efeito metálico reflexivo sutil -->
+            <div class="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] bg-[linear-gradient(45deg,transparent,rgba(227,195,157,0.03),transparent)] rotate-45 pointer-events-none"></div>
+
+            <!-- Avatar Redondo com Borda Glow Cyber Gold -->
+            <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-techBlue bg-slate-800 shadow-neon-blue mb-6 relative">
+                <img src="./img/BrunoPerfil.jpg" alt="Bruno Yukio Mimura" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Nome e Cargo/Status B2B -->
+            <h1 class="font-outfit text-2xl font-bold text-white mb-1.5">Bruno Yukio Mimura</h1>
+            <p class="text-xs text-techCyan font-mono font-semibold tracking-widest uppercase mb-2">Desenvolvedor de Software</p>
+            <div class="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[9px] font-mono text-emerald-400 mb-8 uppercase tracking-wider">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span> Disponível para Projetos
+            </div>
+
+            <!-- Lista de Links Linktree B2B -->
+            <div class="w-full space-y-4 mb-6">
+                
+                <!-- WHATSAPP (CTA Principal) -->
+                <a href="https://wa.me/5511970797269?text=Ol%C3%A1%20Bruno,%20peguei%20seu%20contato%20pelo%20cart%C3%A3o%20virtual%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto." 
+                   target="_blank" 
+                   id="btn-whatsapp"
+                   class="button-item cta-whatsapp-pulse flex items-center justify-between p-4 bg-gradient-to-r from-emerald-600 to-green-500 hover:from-emerald-500 hover:to-green-400 text-white font-bold rounded-2xl transition duration-300 group shadow-neon-whatsapp">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-[9px] font-mono text-white/70 uppercase tracking-wider">Mensagem Direta</span>
+                            <span class="text-sm font-bold">Conversar no WhatsApp</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-white/80 group-hover:translate-x-1 transition pr-2"></i>
+                </a>
+
+                <!-- DIAGNÓSTICO GRATUITO (CTA Premium) -->
+                <a href="./index.html?openSdr=true" 
+                   id="btn-sdr"
+                   class="button-item flex items-center justify-between p-4 bg-gradient-to-r from-techBlue/90 via-indigo-600 to-techDark border border-techBlue/30 hover:border-techBlue text-white font-bold rounded-2xl transition duration-300 group shadow-md hover:scale-[1.02]">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-techBlue/25 border border-techBlue/40 flex items-center justify-center text-techBlue">
+                            <i class="fa-solid fa-wand-magic-sparkles text-xl animate-pulse"></i>
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-[9px] font-mono text-techBlue/80 uppercase tracking-wider">Mapeamento B2B</span>
+                            <span class="text-sm font-bold">Começar Diagnóstico Gratuito</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-techBlue group-hover:translate-x-1 transition pr-2"></i>
+                </a>
+
+                <!-- INSTAGRAM -->
+                <a href="https://www.instagram.com/dotincbr" 
+                   target="_blank" 
+                   id="btn-instagram"
+                   class="button-item flex items-center justify-between p-4 bg-slate-900/60 hover:bg-slate-900 border border-slate-800/80 hover:border-pink-500/50 rounded-2xl text-slate-300 hover:text-white transition-all duration-300 group shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-slate-950 flex items-center justify-center text-slate-400 group-hover:text-pink-500 border border-slate-800/60 transition-colors">
+                            <i class="fa-brands fa-instagram text-xl"></i>
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-[9px] font-mono text-slate-500 uppercase tracking-wider">Instagram</span>
+                            <span class="text-sm font-semibold">@dotincbr</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-slate-500 group-hover:translate-x-1 transition pr-2"></i>
+                </a>
+
+                <!-- FACEBOOK -->
+                <a href="https://www.facebook.com/dotincbr" 
+                   target="_blank" 
+                   id="btn-facebook"
+                   class="button-item flex items-center justify-between p-4 bg-slate-900/60 hover:bg-slate-900 border border-slate-800/80 hover:border-blue-500/50 rounded-2xl text-slate-300 hover:text-white transition-all duration-300 group shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-slate-950 flex items-center justify-center text-slate-400 group-hover:text-blue-500 border border-slate-800/60 transition-colors">
+                            <i class="fa-brands fa-facebook text-xl"></i>
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-[9px] font-mono text-slate-500 uppercase tracking-wider">Facebook</span>
+                            <span class="text-sm font-semibold">DotIncBR</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-slate-500 group-hover:translate-x-1 transition pr-2"></i>
+                </a>
+
+                <!-- EMAIL (Copia ao clicar + Mailto duplo clique) -->
+                <div id="copy-email-btn" 
+                     class="button-item flex items-center justify-between p-4 bg-slate-900/60 hover:bg-slate-900 border border-slate-800/80 hover:border-techCyan/50 rounded-2xl text-slate-300 hover:text-white transition-all duration-300 cursor-pointer group select-none shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-slate-950 flex items-center justify-center text-slate-400 group-hover:text-techBlue border border-slate-800/60 transition-colors">
+                            <i class="fa-solid fa-envelope text-lg"></i>
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-[9px] font-mono text-slate-500 uppercase tracking-wider">E-mail Comercial</span>
+                            <span id="email-text" class="text-sm font-semibold transition-all">dot.inc.care@gmail.com</span>
+                        </div>
+                    </div>
+                    <i class="fa-regular fa-copy text-slate-500 group-hover:text-white transition-colors text-sm pr-2" id="copy-icon"></i>
+                </div>
+
+                <!-- SITE INSTITUCIONAL (Discreto, para negócios) -->
+                <a href="./index.html" 
+                   id="btn-website"
+                   class="button-item flex items-center justify-between p-4 bg-slate-900/60 hover:bg-slate-900 border border-slate-800/80 hover:border-techBlue/50 rounded-2xl text-slate-300 hover:text-white transition-all duration-300 group shadow-sm">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-slate-950 flex items-center justify-center text-slate-400 group-hover:text-techBlue border border-slate-800/60 transition-colors">
+                            <i class="fa-solid fa-globe text-lg"></i>
+                        </div>
+                        <div class="flex flex-col text-left">
+                            <span class="text-[9px] font-mono text-slate-500 uppercase tracking-wider">Website Oficial</span>
+                            <span class="text-sm font-semibold">Visitar dotinc.com.br</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right text-slate-500 group-hover:translate-x-1 transition pr-2"></i>
+                </a>
+
+            </div>
+
+            <!-- Botão de Compartilhamento Dinâmico (Web Share API) -->
+            <button id="share-card-btn" 
+                    class="mt-4 text-[11px] font-mono text-slate-500 hover:text-white flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-share-nodes text-[10px]"></i> Compartilhar Cartão
+            </button>
+
+            <!-- Rodapé minimalista da marca -->
+            <div class="mt-8 text-[9px] font-mono text-slate-600">
+                DOTINCBR &copy; 2026
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Script de Interatividades -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // ==========================================
+            // LÓGICA DO PRELOADER
+            // ==========================================
+            const preloader = document.getElementById('preloader');
+            const preloaderBar = document.getElementById('preloader-bar');
+            const preloaderStatus = document.getElementById('preloader-status');
+
+            let progress = 0;
+            // Carregamento rápido simulado
+            const progressInterval = setInterval(() => {
+                if (progress < 85) {
+                    progress += Math.random() * 20;
+                    if (progress > 85) progress = 85;
+                    preloaderBar.style.width = `${progress}%`;
+                    if (progress > 50) {
+                        preloaderStatus.textContent = "CARREGANDO DADOS...";
+                    }
+                }
+            }, 60);
+
+            const finishLoading = () => {
+                clearInterval(progressInterval);
+                preloaderBar.style.width = '100%';
+                preloaderStatus.textContent = "CONECTADO";
+                
+                setTimeout(() => {
+                    gsap.to(preloader, {
+                        opacity: 0,
+                        y: -30,
+                        duration: 0.5,
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            preloader.style.display = 'none';
+                            preloader.style.pointerEvents = 'none';
+                            playEntranceAnimation();
+                        }
+                    });
+                }, 200);
+            };
+
+            // Dispara após carregar elementos da página
+            window.addEventListener('load', finishLoading);
+
+            // Fallback de segurança (1.5 segundos no máximo)
+            setTimeout(() => {
+                if (preloader && preloader.style.display !== 'none') {
+                    finishLoading();
+                }
+            }, 1500);
+
+
+            // ==========================================
+            // ANIMAÇÕES GSAP DE ENTRADA
+            // ==========================================
+            function playEntranceAnimation() {
+                gsap.timeline()
+                    .fromTo('.card-3d', 
+                        { opacity: 0, scale: 0.9, rotateX: 10, y: 40 }, 
+                        { opacity: 1, scale: 1, rotateX: 0, y: 0, duration: 0.9, ease: 'power3.out' }
+                    )
+                    .fromTo('.button-item', 
+                        { opacity: 0, y: 15 }, 
+                        { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out' },
+                        '-=0.4'
+                    )
+                    .fromTo('#share-card-btn',
+                        { opacity: 0 },
+                        { opacity: 1, duration: 0.5 }
+                    );
+            }
+
+
+            // ==========================================
+            // COPIAR E-MAIL AO CLICAR
+            // ==========================================
+            const emailBtn = document.getElementById('copy-email-btn');
+            const emailText = document.getElementById('email-text');
+            const copyIcon = document.getElementById('copy-icon');
+
+            emailBtn.addEventListener('click', () => {
+                const textToCopy = 'dot.inc.care@gmail.com';
+                
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    const originalText = emailText.textContent;
+                    emailText.textContent = "Copiado para a área de transferência!";
+                    emailText.classList.add('text-techBlue', 'font-medium', 'text-xs');
+                    emailText.classList.remove('text-sm');
+                    copyIcon.className = "fa-solid fa-check text-techBlue text-sm";
+                    
+                    setTimeout(() => {
+                        emailText.textContent = originalText;
+                        emailText.classList.remove('text-techBlue', 'font-medium', 'text-xs');
+                        emailText.classList.add('text-sm');
+                        copyIcon.className = "fa-regular fa-copy text-slate-500 group-hover:text-white transition text-sm";
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Falha ao copiar: ', err);
+                    // Abre link de envio de email caso clipboard falhe
+                    window.location.href = `mailto:${textToCopy}`;
+                });
+            });
+
+
+            // ==========================================
+            // EFEITO HOVER 3D NO CARD (Desktop)
+            // ==========================================
+            const cardWrap = document.querySelector('.card-3d-wrap');
+            const card = document.querySelector('.card-3d');
+
+            if (window.innerWidth > 768) {
+                cardWrap.addEventListener('mousemove', (e) => {
+                    const rect = cardWrap.getBoundingClientRect();
+                    const x = e.clientX - rect.left - (rect.width / 2);
+                    const y = e.clientY - rect.top - (rect.height / 2);
+                    
+                    const rotateX = -y / 15;
+                    const rotateY = x / 15;
+                    
+                    card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+
+                cardWrap.addEventListener('mouseleave', () => {
+                    card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                });
+            }
+
+
+            // ==========================================
+            // COMPARTILHAR CARTÃO (Web Share API / Copy Link)
+            // ==========================================
+            const shareBtn = document.getElementById('share-card-btn');
+
+            shareBtn.addEventListener('click', async () => {
+                const shareData = {
+                    title: 'Cartão Virtual Bruno Yukio Mimura',
+                    text: 'Acesse os contatos de Bruno Yukio Mimura (DotIncBR).',
+                    url: window.location.href
+                };
+
+                if (navigator.share) {
+                    try {
+                        await navigator.share(shareData);
+                    } catch (err) {
+                        console.log('Compartilhamento cancelado ou falhou:', err);
+                    }
+                } else {
+                    // Fallback para copiar o link da página
+                    try {
+                        await navigator.clipboard.writeText(window.location.href);
+                        const originalContent = shareBtn.innerHTML;
+                        shareBtn.innerHTML = '<i class="fa-solid fa-check text-techBlue"></i> Link Copiado!';
+                        setTimeout(() => {
+                            shareBtn.innerHTML = originalContent;
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Erro ao copiar link:', err);
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

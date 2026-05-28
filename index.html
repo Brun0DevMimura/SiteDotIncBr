@@ -1,977 +1,1507 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOTINCBR | Desenvolvimento .NET</title>
+
+    <!-- SEO Local e Otimizações B2B -->
+    <title>Automação de Processos e Sistemas Web em Ribeirão Pires e ABC | DotIncBR</title>
+    <meta name="description"
+        content="Elimine planilhas manuais, conecte seus sistemas e crie robôs de atendimento inteligentes no WhatsApp. Automação de processos robusta no Grande ABC e Alto Tietê com a agilidade que sua empresa merece.">
+    <meta name="keywords"
+        content="automação de processos, sistemas web, whatsapp robot, ribeirão pires, grande abc, alto tietê, dotincbr, desenvolvimento de sistemas, integração de sistemas">
+
+    <!-- Meta Tags Open Graph (Compartilhamento) -->
+    <meta property="og:title" content="Automação de Processos e Sistemas Web | DotIncBR">
+    <meta property="og:description"
+        content="Sua empresa no piloto automático. Menos digitação, mais faturamento. Conectamos seus sistemas e eliminamos trabalho manual no ABC e Alto Tietê.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dotinc.com.br">
+
+    <!-- Google Fonts: Outfit (Títulos modernos) e Inter (Leitura confortável) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS (Classes funcionais ultra-modernas) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        outfit: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        techDark: '#071739',      /* Deep Tech Navy */
+                        techCard: '#A4B5C4',      /* Muted Steel */
+                        techBlue: '#E3C39D',      /* Cyber Gold */
+                        techCyan: '#CDD5DB',      /* Cool Gray */
+                        techGreen: '#FFFFFF',     /* White */
+                    },
+                    boxShadow: {
+                        'neon-cyan': '0 0 20px rgba(6, 182, 212, 0.25)',
+                        'neon-blue': '0 0 20px rgba(37, 99, 235, 0.25)',
+                        'neon-green': '0 0 20px rgba(16, 185, 129, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- FontAwesome (Ícones premium) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Estilos Personalizados para Efeitos de Glow e Bordas Futuristas -->
     <style>
-        /* Variáveis da paleta Tech Precision */
-        :root {
-            --azul-profundo: #0D1B2A;
-            --azul-medio: #1E3A5F;
-            --ciano-tecnologico: #00B4D8;
-            --cinza-light: #E2E8F0;
-            --branco-puro: #FFFFFF;
-            --preto-sombra: #0A141F;
+        /* Estilização da barra de rolagem */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
 
-        /* Reset e estilos base */
-        * {
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06b6d4;
+        }
+
+        /* Global box-sizing */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        /* Ensure full‑width background on mobile */
+        html,
+        body {
+            width: 100%;
+            overflow-x: hidden;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', 'Inter', sans-serif;
         }
 
-        body {
-            background: var(--azul-profundo);
-            color: var(--cinza-light);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Efeito de partículas futurista */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
-        /* Container principal */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Mobile First - Navegação */
-        .nav-mobile-header {
-            position: fixed;
-            top: 1rem;
-            left: 1rem;
-           right:2.5rem;
-            background: rgba(13, 27, 42, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--ciano-tecnologico);
-            border-radius: 15px;
-            padding: 1rem;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 0 20px rgba(0, 180, 216, 0.3);
-        }
-
-        .logo-nexus {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: var(--branco-puro);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .logo-dot {
-            color: var(--ciano-tecnologico);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.7;
-            }
-        }
-
-        .menu-toggle {
-            background: none;
-            border: none;
-            color: var(--branco-puro);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .nav-hologram-Desktop {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 80%;
-            height: 100vh;
-            background: var(--azul-profundo);
-            border-right: 2px solid var(--ciano-tecnologico);
-            padding: 2rem;
-            z-index: 1001;
-            transition: left 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .nav-hologram {
-            position: fixed;
-            top: 0;
-            left: -100%;
-            width: 80%;
-            height: 100vh;
-            background: var(--azul-profundo);
-            border-right: 2px solid var(--ciano-tecnologico);
-            padding: 2rem;
-            z-index: 1001;
-            transition: left 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .nav-hologram.active {
-            left: 0;
-        }
-
-        .nav-hologram-Desktop.active {
-            left: 0;
-        }
-
-        .nav-hologram-Desktop a {
-            color: var(--cinza-light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.2rem;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(0, 180, 216, 0.2);
-            transition: color 0.3s ease;
-        }
-
-        .nav-hologram a {
-            color: var(--cinza-light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.2rem;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(0, 180, 216, 0.2);
-            transition: color 0.3s ease;
-        }
-
-        .nav-hologram-Desktop a:hover {
-            color: var(--ciano-tecnologico);
-        }
-
-        .nav-hologram a:hover {
-            color: var(--ciano-tecnologico);
-        }
-
-        .close-menu {
-            align-self: flex-end;
-            background: none;
-            border: none;
-            color: var(--branco-puro);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .btn-cyber {
-            background: linear-gradient(135deg, var(--ciano-tecnologico), #0099BC);
-            color: var(--branco-puro);
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 180, 216, 0.4);
-            display: inline-block;
-            text-align: center;
-        }
-
-        .btn-cyber:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 0 25px rgba(0, 180, 216, 0.6);
-        }
-
-        /* Hero Section Responsiva */
-        .hero-neon {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            padding: 6rem 0 2rem;
-        }
-
-        .hero-content {
-            text-align: center;
+        /* Images responsive */
+        img {
             max-width: 100%;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .hero-glitch {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--branco-puro), var(--ciano-tecnologico));
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 180, 216, 0.4);
-            line-height: 1.2;
-        }
-
-        .hero-subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.9;
-            padding: 0 1rem;
-        }
-
-        /* Grid de Serviços Responsivo */
-        .services-hologram {
-            padding: 4rem 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-top: 5em;
-            margin-bottom: 3rem;
-            padding: 0 1rem;
-        }
-
-        .title-neon {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: var(--branco-puro);
-            position: relative;
-            display: inline-block;
-        }
-
-        .title-neon:after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background: var(--ciano-tecnologico);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-top: 3rem;
-            padding: 0 1rem;
-        }
-
-        .service-card-3d {
-            background: rgba(30, 58, 95, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 180, 216, 0.3);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--ciano-tecnologico);
-            margin-bottom: 1.5rem;
-        }
-
-        .service-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--branco-puro);
-        }
-
-        /* Formulário Responsivo */
-        .contact-matrix {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, var(--azul-profundo), var(--preto-sombra));
-            position: relative;
-        }
-
-        .form-hologram {
-            background: rgba(13, 27, 42, 0.8);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--ciano-tecnologico);
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 0 1rem;
-            box-shadow: 0 0 30px rgba(0, 180, 216, 0.3);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
+            height: auto;
             display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--branco-puro);
-            font-size: 0.9rem;
         }
 
-        .form-input {
-            width: 100%;
-            padding: 0.8rem 1.2rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(0, 180, 216, 0.3);
-            border-radius: 10px;
-            color: var(--branco-puro);
-            font-size: 1rem;
-            transition: all 0.3s ease;
+        /* Efeito de Gradiente de Borda Contínuo nos Cards */
+        .responsive-img {
+            max-width: 100%;
+            height: auto;
         }
 
-        .form-input:focus {
-            outline: none;
-            border-color: var(--ciano-tecnologico);
-            box-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
-            background: rgba(255, 255, 255, 0.15);
+        .glow-border {
+            position: relative;
+            background: linear-gradient(#0b0f19, #0b0f19) padding-box,
+                linear-gradient(135deg, rgba(37, 99, 235, 0.2), rgba(6, 182, 212, 0.2)) border-box;
+            border: 1px solid transparent;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Botão Flutuante do WhatsApp */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            width: 55px;
-            height: 55px;
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            box-shadow: 0 0 15px rgba(37, 211, 102, 0.6);
-            z-index: 999;
-            transition: all 0.3s ease;
-            animation: pulse-whatsapp 2s infinite;
+        .glow-border:hover {
+            background: linear-gradient(#0c1322, #0c1322) padding-box,
+                linear-gradient(135deg, #2563eb, #06b6d4) border-box;
+            box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.25);
+            transform: translateY(-4px);
         }
 
-        .dot-footer {
-  background: #000;
-  color: #fff;
-  padding: 60px 0 30px;
-  font-family: 'Arial', sans-serif;
-}
-
-.footer-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
-  padding: 0 20px;
-}
-
-.footer-col h3,
-.footer-col h4 {
-  color: #007BFF;
-  margin-bottom: 20px;
-  font-size: 1.3rem;
-}
-
-.footer-logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.footer-col p {
-  color: #ccc;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.footer-col ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-col ul li {
-  margin-bottom: 10px;
-}
-
-.footer-col a {
-  color: #ccc;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.footer-col a:hover {
-  color: #007BFF;
-}
-
-.contact-info li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-
-.social-icons a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: #333;
-  border-radius: 50%;
-  color: #fff;
-  margin-right: 10px;
-  transition: all 0.3s;
-}
-
-.social-icons a:hover {
-  background: #007BFF;
-  transform: translateY(-3px);
-}
-
-.newsletter-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.newsletter-form input {
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  outline: none;
-}
-
-.newsletter-form button {
-  background: #007BFF;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-.newsletter-form button:hover {
-  background: #0056b3;
-}
-
-.footer-bottom {
-  text-align: center;
-  padding-top: 30px;
-  margin-top: 40px;
-  border-top: 1px solid #333;
-  color: #999;
-  font-size: 0.9rem;
-}
-
-.footer-bottom a {
-  color: #007BFF;
-  text-decoration: none;
-}
-
-.footer-bottom a:hover {
-  text-decoration: underline;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-  .footer-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .social-icons {
-    justify-content: center;
-  }
-
-  .newsletter-form {
-    max-width: 300px;
-    margin: 0 auto;
-  }
-}
-
-        @keyframes pulse-whatsapp {
+        /* Animação Pulse Glow para CTAs */
+        @keyframes pulseGlow {
 
             0%,
             100% {
-                transform: scale(1);
+                box-shadow: 0 0 15px rgba(6, 182, 212, 0.4);
             }
 
             50% {
-                transform: scale(1.08);
+                box-shadow: 0 0 30px rgba(6, 182, 212, 0.7);
             }
         }
 
-        .whatsapp-float:hover {
-            transform: scale(1.12);
-            box-shadow: 0 0 25px rgba(37, 211, 102, 0.8);
-        }
-
-        .whatsapp-tooltip {
-            display: none;
-        }
-
-        /* Media Queries para tablets */
-        @media (min-width: 768px) {
-            .container {
-                padding: 0 2rem;
-            }
-
-            .hero-glitch {
-                font-size: 3rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
-                padding: 0;
-            }
-
-            .form-hologram {
-                margin: 0 auto;
-                max-width: 500px;
-            }
-
-            .nav-mobile-header {
-                left: 2rem;
-                right:1rem;
-            }
-        }
-
-        /* Media Queries para desktop */
-        @media (min-width: 1024px) {
-            .nav-mobile-header {
-                display: none;
-            }
-
-            .nav-immersive {
-                position: fixed;
-                top: 2rem;
-                left: 50%;
-                transform: translateX(-50%);
-                background: rgba(13, 27, 42, 0.95);
-                backdrop-filter: blur(10px);
-                border: 1px solid var(--ciano-tecnologico);
-                border-radius: 50px;
-                padding: 1rem 2rem;
-                z-index: 1000;
-                display: flex;
-                align-items: center;
-                gap: 3rem;
-                box-shadow: 0 0 30px rgba(0, 180, 216, 0.3);
-            }
-
-            .nav-hologram {
-                position: static;
-                width: auto;
-                height: auto;
-                background: transparent;
-                border: none;
-                padding: 0;
-                flex-direction: row;
-                gap: 2.5rem;
-                display: none;
-            }
-
-            .nav-hologram-Desktop {
-                position: static;
-                width: auto;
-                height: auto;
-                background: transparent;
-                border: none;
-                padding: 0;
-                flex-direction: row;
-                gap: 2.5rem;
-            }
-
-            .nav-hologram-Desktop a {
-
-                border: none;
-                padding: 0;
-                font-size: 1rem;
-            }
-
-            .nav-hologram a {
-
-                border: none;
-                padding: 0;
-                font-size: 1rem;
-            }
-
-            .close-menu {
-                display: none;
-            }
-
-            .menu-toggle {
-                display: none;
-            }
-
-            .hero-glitch {
-                font-size: 4rem;
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 2.5rem;
-            }
-
-            .form-hologram {
-                max-width: 600px;
-                padding: 3rem;
-            }
-
-            .whatsapp-tooltip {
-                display: block;
-                position: absolute;
-                right: 65px;
-                background: var(--azul-profundo);
-                color: white;
-                padding: 0.6rem 1.2rem;
-                border-radius: 20px;
-                font-weight: 500;
-                opacity: 0;
-                transform: translateX(20px);
-                transition: all 0.3s ease;
-                pointer-events: none;
-                white-space: nowrap;
-                font-size: 0.9rem;
-            }
-
-            .whatsapp-float:hover .whatsapp-tooltip {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Melhorias para telas muito grandes */
-        @media (min-width: 1400px) {
-            .hero-glitch {
-                font-size: 4.5rem;
-            }
-
-            .services-grid {
-                gap: 3rem;
-            }
-        }
-
-        /* Ajustes para modo paisagem em mobile */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .hero-neon {
-                padding: 8rem 0 2rem;
-                min-height: auto;
-                right:4rem;
-            }
-
-            .nav-mobile-header {
-                top: 0.5rem;
-                padding: 0.8rem;
-            }
-        }
-             .hero-content {
-            text-align: center;
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 0 1rem;
+        .cta-pulse {
+            animation: pulseGlow 2.5s infinite;
         }
     </style>
+
+    <!-- Schema.json (SEO Local estruturado para o ABC e Alto Tietê) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "DotIncBR",
+      "image": "https://dotinc.com.br/img/logo.png",
+      "@id": "https://dotinc.com.br",
+      "url": "https://dotinc.com.br",
+      "telephone": "+5511970797269",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Área Central",
+        "addressLocality": "Ribeirão Pires",
+        "addressRegion": "SP",
+        "postalCode": "09400-000",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -23.7126,
+        "longitude": -46.4131
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [
+        "https://www.instagram.com/dotincbr",
+        "https://www.linkedin.com/company/dotincbr"
+      ],
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Grande ABC"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Diadema"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Ribeirão Pires"
+        },
+          {
+          "@type": "AdministrativeArea",
+          "name": "Suzano"
+        }
+      ]
+    }
+    </script>
 </head>
 
-<body>
-    <!-- Efeito de Partículas Futuristas -->
-    <div id="particles-js"></div>
+<body
+    class="bg-techDark text-slate-200 font-sans antialiased overflow-x-hidden selection:bg-techCyan/30 selection:text-white">
 
-    <!-- Navegação Mobile -->
-    <nav class="nav-mobile-header">
-        <a href="#" class="logo-nexus">
-            DOT<span class="logo-dot">•</span>INC<span style="font-size: 0.8em; margin-left: 0.2em;">BR</span>
-        </a>
-        <button class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
-        </button>
-    </nav>
+    <!-- Canvas global frame-by-frame: xicara girando como bg fixo da página -->
+    <canvas id="xicara-canvas"
+        style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:0;opacity:0.20;">
+    </canvas>
 
-    <!-- Menu Mobile-->
-    <nav class="nav-hologram" id="mobileMenu">
-        <button class="close-menu" id="closeMenu">
-            <i class="fas fa-times"></i>
-        </button>
-        <a href="#services">Serviços</a>
-        <a href="./portifolio.html">Portfólio</a>
-        <a href="./sobre.html">Sobre</a>
-        <a href="./contato.html">Contato</a>
-        <a href="./contato.html" class="btn-cyber">Iniciar Projeto</a>
-    </nav>
-
-    <!-- Navegação Desktop (será mostrada apenas em desktop) -->
-    <nav class="nav-immersive" style="display: none;">
-        <a href="#" class="logo-nexus">
-            DOT<span class="logo-dot">•</span>INC<span style="font-size: 0.9em; margin-left: 0.2em;">BR</span>
-        </a>
-        <div class="nav-hologram-Desktop">
-            <a href="#services">Serviços</a>
-            <a href="./portifolio.html">Portfólio</a>
-            <a href="./sobre.html">Sobre</a>
-            <a href="./contato.html">Contato</a>
+    <!-- Preloader Dark Tech Modern -->
+    <div id="preloader"
+        class="fixed inset-0 z-[9999] bg-techDark flex flex-col items-center justify-center pointer-events-auto transition-all duration-700">
+        <div class="flex flex-col items-center gap-6">
+            <span class="font-outfit text-3xl font-bold tracking-tight text-white select-none">
+                DOT<span class="text-techCyan animate-pulse">•</span>INC<span
+                    class="text-xs bg-techBlue/25 border border-techBlue/50 text-techCyan px-1.5 py-0.5 rounded font-mono font-medium ml-1">BR</span>
+            </span>
+            <div
+                class="w-48 h-1 bg-slate-900 rounded-full overflow-hidden border border-slate-800/40 relative shadow-inner">
+                <div id="preloader-bar"
+                    class="h-full w-0 bg-gradient-to-r from-techCyan to-indigo-500 rounded-full shadow-neon-cyan transition-all duration-300">
+                </div>
+            </div>
+            <span class="text-[10px] font-mono text-slate-500 tracking-widest uppercase"
+                id="preloader-status">INICIALIZANDO SISTEMA...</span>
         </div>
-        <a href="./contato.html" class="btn-cyber">Iniciar Projeto</a>
-    </nav>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="hero-neon">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-glitch">DESENVOLVIMENTO .NET</h1>
-                <p class="hero-subtitle">Soluções digitais sob medida com tecnologia, performance e design </p>
-                <a href="./contato.html" class="btn-cyber">Transforme Sua Ideia em Realidade</a>
+    <!-- Navegação Imersiva (Blur Glassmorphism) -->
+    <header
+        class="fixed top-0 left-0 w-full z-50 bg-techDark/75 backdrop-blur-md border-b border-slate-800/40 transition duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#"
+                class="font-outfit text-xl font-bold tracking-tight text-white flex items-center gap-1 hover:opacity-90 transition">
+                DOT<span class="text-techCyan animate-pulse">•</span>INC<span
+                    class="text-xs bg-techBlue/25 border border-techBlue/50 text-techCyan px-1.5 py-0.5 rounded font-mono font-medium ml-1">BR</span>
+            </a>
+
+            <!-- Menu Desktop -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+                <a href="#dores" class="hover:text-white transition">Problemas</a>
+                <a href="#como-funciona" class="hover:text-white transition">Como Funciona</a>
+                <a href="./portifolio.html" class="hover:text-white transition">Portfólio</a>
+                <a href="./sobre.html" class="hover:text-white transition">Sobre</a>
+                <a href="#contato" class="hover:text-white transition">Diagnóstico</a>
+            </nav>
+
+            <div class="hidden md:block">
+                <a href="#contato"
+                    class="bg-slate-900 border border-slate-700/80 hover:border-techCyan text-white text-sm font-semibold py-2 px-5 rounded-full transition duration-300 shadow-sm flex items-center gap-2">
+                    Falar com Desenvolvedor <i class="fa-solid fa-arrow-right text-xs text-techCyan"></i>
+                </a>
+            </div>
+
+            <!-- Botão Mobile -->
+            <button class="md:hidden text-slate-300 hover:text-white focus:outline-none" id="mobile-menu-btn"
+                aria-label="Abrir Menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Menu Mobile Modal (Overlay) -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-techDark/98 backdrop-blur-lg z-50 flex flex-col justify-between p-8 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+        <div>
+            <div class="flex items-center justify-between mb-12">
+                <span class="font-outfit text-xl font-bold tracking-tight text-white">
+                    DOT<span class="text-techCyan">•</span>INC<span
+                        class="text-xs text-techCyan/80 font-mono ml-1">BR</span>
+                </span>
+                <button class="text-slate-300 hover:text-white" id="mobile-menu-close" aria-label="Fechar Menu">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col gap-6 text-xl font-outfit font-semibold text-slate-300">
+                <a href="#dores" class="hover:text-techCyan transition py-2 border-b border-slate-800/50">Problemas</a>
+                <a href="#como-funciona" class="hover:text-techCyan transition py-2 border-b border-slate-800/50">Como
+                    Funciona</a>
+                <a href="./portifolio.html"
+                    class="hover:text-techCyan transition py-2 border-b border-slate-800/50">Portfólio</a>
+                <a href="./sobre.html"
+                    class="hover:text-techCyan transition py-2 border-b border-slate-800/50">Sobre</a>
+                <a href="#contato"
+                    class="hover:text-techCyan transition py-2 border-b border-slate-800/50">Diagnóstico</a>
+            </nav>
+        </div>
+        <div class="flex flex-col gap-4">
+            <a href="https://wa.me/5511970797269?text=Ol%C3%A1,%20gostaria%20de%20um%20diagn%C3%B3stico%20gratuito%20de%20automa%C3%A7%C3%A3o%20para%20minha%20empresa."
+                target="_blank"
+                class="w-full text-center bg-emerald-500 hover:bg-white hover:text-techBlue text-white font-medium py-4 px-8 rounded-xl transition duration-300 flex items-center justify-center gap-2 text-lg">
+                <i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp Direto
+            </a>
+            <a href="#contato" id="close-menu-cta"
+                class="w-full text-center bg-techCyan hover:bg-cyan-500 text-techDark font-bold py-3 px-6 rounded-xl transition">
+                Quero Diagnóstico Gratuito
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section (Acima da Dobra com Tecnologia & Escapismo de Planilhas) -->
+    <!-- HERO: seção TRANSPARENTE — canvas aparece ao fundo -->
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex items-center min-h-[90vh]"
+        style="background:transparent;">
+        <!-- Glows de Background Ambientais -->
+        <div
+            class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-techCyan/10 rounded-full blur-[100px] pointer-events-none">
+        </div>
+        <div
+            class="absolute bottom-10 right-10 w-[450px] h-[450px] bg-techCyan/10 rounded-full blur-[120px] pointer-events-none">
+        </div>
+
+        <!-- Malha de Linhas Tecnológicas (Grid Faint) -->
+        <div
+            class="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 pointer-events-none">
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10 text-center">
+            <!-- Badge de Introdução Premium -->
+            <div
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-900/80 border border-slate-700/50 backdrop-blur text-xs font-mono font-medium text-techCyan mb-8 tracking-wider uppercase shadow-inner">
+                <span class="w-2 h-2 rounded-full bg-techCyan animate-ping"></span>Software & Automações
+            </div>
+
+            <!-- H1 Impactante -->
+            <h1
+                class="font-outfit text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight mb-8">
+                Sua empresa no <span
+                    class="bg-gradient-to-r from-techCyan via-techBlue to-indigo-500 bg-clip-text text-transparent">piloto
+                    automático</span>.<br class="hidden sm:inline">
+                Menos digitação, mais faturamento.
+            </h1>
+
+
+            <!-- Subtítulo Persuasivo -->
+            <p class="text-slate-400 text-lg md:text-xl font-normal leading-relaxed max-w-3xl mx-auto mb-12">
+                Conectamos seus sistemas, eliminamos planilhas manuais e criamos automações e robôs de atendimento
+                inteligentes no
+                WhatsApp. Tecnologia sob medida para o seu negócio decolar.
+            </p>
+
+            <!-- Ações Convertedoras -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-5">
+                <a href="#contato"
+                    class="cta-pulse w-full sm:w-auto bg-techCyan hover:bg-cyan-400 text-techDark font-bold py-4 px-8 rounded-xl transition duration-300 shadow-neon-cyan flex items-center justify-center gap-2 text-lg">
+                    Quero um Diagnóstico Gratuito <i class="fa-solid fa-chevron-right text-sm"></i>
+                </a>
+                <a href="https://wa.me/5511970797269?text=Ol%C3%A1,%20gostaria%20de%20um%20diagn%C3%B3stico%20gratuito%20de%20automa%C3%A7%C3%A3o%20para%20minha%20empresa."
+                    target="_blank"
+                    class="w-full sm:w-auto bg-emerald-500 hover:bg-white hover:text-techBlue text-white font-medium py-4 px-8 rounded-xl transition duration-300 flex items-center justify-center gap-2 text-lg">
+                    <i class="fa-brands fa-whatsapp text-white text-xl"></i> Falar com o Desenvolvedor
+                </a>
+            </div>
+
+            <!-- Prova Social Silenciosa / Tecnologias Integradas -->
+            <div class="mt-20 pt-8 border-t border-slate-800/40">
+                <p class="text-xs font-mono uppercase tracking-widest text-slate-500 mb-6">INTEGRAMOS COM SUAS
+                    FERRAMENTAS DIÁRIAS</p>
+                <div
+                    class="flex flex-wrap items-center justify-center gap-8 md:gap-14 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <div class="flex items-center gap-2 text-white font-semibold tracking-wide text-sm font-outfit">
+                        <i class="fa-brands fa-whatsapp text-lg text-techGreen"></i> WhatsApp API
+                    </div>
+                    <div class="flex items-center gap-2 text-white font-semibold tracking-wide text-sm font-outfit">
+                        <i class="fa-solid fa-table-cells text-lg text-emerald-500"></i> Google Sheets
+                    </div>
+                    <div class="flex items-center gap-2 text-white font-semibold tracking-wide text-sm font-outfit">
+                        <i class="fa-solid fa-envelope-open-text text-lg text-rose-500"></i> Gmail / CRM
+                    </div>
+                    <div class="flex items-center gap-2 text-white font-semibold tracking-wide text-sm font-outfit">
+                        <i class="fa-solid fa-credit-card text-lg text-indigo-400"></i> Gateways de Pagamento
+                    </div>
+                    <div class="flex items-center gap-2 text-white font-semibold tracking-wide text-sm font-outfit">
+                        <i class="fa-solid fa-code-branch text-lg text-sky-400"></i> Webhooks & REST APIs
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Serviços -->
-    <section id="services" class="services-hologram">
-        <div class="container">
-            <div class="section-title">
-                <h2 class="title-neon">Serviços Personalizados</h2>
-                <p>Tecnologia e design usados ao seu favor</p>
+    <!-- Seção: "As Dores que Eliminamos" -->
+    <!-- DORES: seção SÓLIDA — esconde canvas -->
+    <section id="dores" class="py-24 border-y border-slate-900/80 relative"
+        style="background:#071739;position:relative;z-index:2;">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="font-outfit text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
+                    O que está travando o crescimento da sua empresa?
+                </h2>
+                <p class="text-slate-400">
+                    Pequenas ineficiências diárias consomem dezenas de horas produtivas do seu time. Identificamos e
+                    exterminamos esses 3 grandes gargalos:
+                </p>
             </div>
-            <div class="services-grid">
-                <div class="service-card-3d">
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
+
+            <!-- Grid de 3 Cards Limpos e Premium -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Card 1: O Caos do Copia e Cola -->
+                <div class="glow-border rounded-2xl p-8 flex flex-col justify-between min-h-[300px]">
+                    <div>
+                        <div
+                            class="w-12 h-12 bg-rose-500/10 border border-rose-500/20 text-rose-400 rounded-xl flex items-center justify-center mb-6 text-xl">
+                            <i class="fa-solid fa-copy"></i>
+                        </div>
+                        <h3 class="font-outfit text-xl font-semibold text-white mb-4">O Caos do Copia e Cola</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Perda de tempo crônica cruzando dados manualmente entre sistemas, ERP, planilhas e e-mails.
+                            Processo sujeito a erros humanos e digitações incorretas.
+                        </p>
                     </div>
-                    <h3 class="service-title">Sistemas .NET Sob Medida</h3>
-                    <p>Entendemos a sua necessidade para fazer um desenvolvimento de sistemas complexos com arquitetura
-                        limpa e personalizado</p>
+                    <div
+                        class="mt-8 pt-4 border-t border-slate-800/40 flex items-center justify-between text-xs text-rose-400 font-mono">
+                        <span>GARGALO DE OPERAÇÃO</span>
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
                 </div>
-                  <!-- <div class="service-card-3d">
-                    <div class="service-icon">
-                        <i class="fas fa-mobile-alt"></i>
+
+                <!-- Card 2: O Cemitério de Leads -->
+                <div class="glow-border rounded-2xl p-8 flex flex-col justify-between min-h-[300px]">
+                    <div>
+                        <div
+                            class="w-12 h-12 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-xl flex items-center justify-center mb-6 text-xl">
+                            <i class="fa-solid fa-comments"></i>
+                        </div>
+                        <h3 class="font-outfit text-xl font-semibold text-white mb-4">Cemitério de Leads no WhatsApp
+                        </h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Demora para responder clientes interessados, esquecimento de retornos e conversas perdidas
+                            no limbo. Cada minuto sem resposta reduz sua conversão pela metade.
+                        </p>
                     </div>
-                    <h3 class="service-title">Apps Android</h3>
-                    <p>Aplicativos nativos multiplataforma com performance de elite e UX imersiva</p>
-                </div> -->
-                <div class="service-card-3d">
-                    <div class="service-icon">
-                        <i class="fas fa-globe"></i>
+                    <div
+                        class="mt-8 pt-4 border-t border-slate-800/40 flex items-center justify-between text-xs text-amber-400 font-mono">
+                        <span>PERDA DE FATURAMENTO</span>
+                        <i class="fa-solid fa-triangle-exclamation"></i>
                     </div>
-                    <h3 class="service-title">Plataformas Web de Alto Impacto</h3>
-                    <p>Sites e aplicações web que convertem visitantes em clientes fiéis</p>
                 </div>
-                  <div class="service-card-3d">
-                    <div class="service-icon">
-                        <i class="fas fa-globe"></i>
+
+                <!-- Card 3: Agendas e Cobranças Furadas -->
+                <div class="glow-border rounded-2xl p-8 flex flex-col justify-between min-h-[300px]">
+                    <div>
+                        <div
+                            class="w-12 h-12 bg-cyan-500/10 border border-cyan-500/20 text-techCyan rounded-xl flex items-center justify-center mb-6 text-xl">
+                            <i class="fa-solid fa-calendar-times"></i>
+                        </div>
+                        <h3 class="font-outfit text-xl font-semibold text-white mb-4">Agendas e Faturamento Furados</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Falta de lembretes automáticos de horários, prejuízo com faltas de clientes de última hora e
+                            estresse no envio manual de cobranças de inadimplentes.
+                        </p>
                     </div>
-                    <h3 class="service-title">Tire a sua idea do papel</h3>
-                    <p>Sistemas, sites e aplicações que facilitam e otimizam sua rotina.</p>
+                    <div
+                        class="mt-8 pt-4 border-t border-slate-800/40 flex items-center justify-between text-xs text-techCyan font-mono">
+                        <span>DESCONTROLE FINANCEIRO</span>
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Chamada sutil de ação -->
+            <div class="mt-16 text-center">
+                <p
+                    class="text-slate-400 inline-flex flex-col sm:flex-row items-center gap-2 justify-center bg-slate-900/40 border border-slate-800/50 py-3 px-6 rounded-full text-sm">
+                    <span>Identificou-se com algum desses problemas?</span>
+                    <a href="#contato" class="text-techCyan hover:underline font-semibold flex items-center gap-1">
+                        Vamos conversar sobre suas dores <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Interativa: "Como Funciona" (SVG Scroll Animation) -->
+    <!-- COMO FUNCIONA: seção TRANSPARENTE — canvas aparece ao fundo -->
+    <section id="como-funciona" class="py-24 relative overflow-hidden" style="background:transparent;z-index:1;">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+
+            <div class="text-center max-w-2xl mx-auto mb-20">
+                <div class="text-techCyan font-mono text-sm tracking-wider uppercase mb-3">FLUXO INTELIGENTE</div>
+                <h2 class="font-outfit text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
+                    A Automação em Ação
+                </h2>
+                <p class="text-slate-400">
+                    Abaixo, veja como os processos manuais repetitivos viram um ecossistema de software
+                    automático, seguro e rastreável.
+                </p>
+            </div>
+
+            <!-- CONTAINER VERTICAL DO SCROLL SVG -->
+            <div class="relative min-h-[900px] md:min-h-[1100px]" id="timeline-section">
+
+                <!-- SVG de Background com a Linha Guia -->
+                <div class="absolute top-0 h-full pointer-events-none w-12 left-6 md:left-0 md:w-full">
+                    <svg class="w-full h-full" viewBox="0 0 100 1000" preserveAspectRatio="none" fill="none">
+                        <path id="svg-line-bg" d="M 50 0 L 50 1000" stroke="rgba(37, 99, 235, 0.15)" stroke-width="4"
+                            stroke-linecap="round" vector-effect="non-scaling-stroke" />
+                        <path id="svg-line-active" d="M 50 0 L 50 1000" stroke="url(#active-gradient)" stroke-width="5"
+                            stroke-linecap="round" vector-effect="non-scaling-stroke" />
+
+                        <defs>
+                            <linearGradient id="active-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#06b6d4" />
+                                <stop offset="50%" stop-color="#2563eb" />
+                                <stop offset="100%" stop-color="#10b981" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+
+                <!-- Marco 1: Entrada do Dado -->
+                <div
+                    class="timeline-step relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 pt-10 pb-20 md:pb-28">
+                    <div class="pl-16 md:pl-0 md:text-right flex flex-col justify-center items-start md:items-end">
+                        <div
+                            class="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 px-3 py-1 rounded-full text-xs font-mono text-slate-400 mb-3">
+                            <span>01 / CAPTURA</span>
+                        </div>
+                        <h4 class="font-outfit text-xl md:text-2xl font-semibold text-white mb-3">Marco 1: Entrada do
+                            Dado</h4>
+                        <p class="text-slate-400 text-sm md:text-base max-w-md md:ml-auto">
+                            O cliente entra em contato seja por whatapp, preenche um formulário no site ou realiza um
+                            pedido no seu sistema de vendas. Esse acionador ativa a engrenagem digital instantaneamente.
+                        </p>
+                    </div>
+
+                    <div
+                        class="absolute left-6 md:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-techDark border-4 border-slate-850 flex items-center justify-center z-20 transition-all duration-300 timeline-dot">
+                        <div class="w-3 h-3 rounded-full bg-slate-700 dot-inner transition-colors duration-300"></div>
+                    </div>
+
+                    <div class="hidden md:block"></div>
+                </div>
+
+                <!-- Marco 2: O Robô Processa -->
+                <div class="timeline-step relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 pb-20 md:pb-28">
+                    <div class="hidden md:block"></div>
+
+                    <div
+                        class="absolute left-6 md:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-techDark border-4 border-slate-850 flex items-center justify-center z-20 transition-all duration-300 timeline-dot">
+                        <div class="w-3 h-3 rounded-full bg-slate-700 dot-inner transition-colors duration-300"></div>
+                    </div>
+
+                    <div class="pl-16 md:pl-0 flex flex-col justify-center items-start">
+                        <div
+                            class="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 px-3 py-1 rounded-full text-xs font-mono text-slate-400 mb-3">
+                            <span>02 / INTEGRAÇÃO</span>
+                        </div>
+                        <h4 class="font-outfit text-xl md:text-2xl font-semibold text-white mb-3">Marco 2: O Robô
+                            Processa</h4>
+                        <p class="text-slate-400 text-sm md:text-base max-w-md">
+                            A automação personalizada integra seus sistemas ou processos previnindo e minimizando erros.
+                            Ela consulta o
+                            estoque, faz cálculos, cadastra o lead no seu sistema, na sua planilha, no banco de dados e
+                            deixa disponivel para o seu time
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Marco 3: Resultado Imediato -->
+                <div class="timeline-step relative grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 pb-10">
+                    <div class="pl-16 md:pl-0 md:text-right flex flex-col justify-center items-start md:items-end">
+                        <div
+                            class="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 px-3 py-1 rounded-full text-xs font-mono text-slate-400 mb-3">
+                            <span>03 / EFICIÊNCIA</span>
+                        </div>
+                        <h4 class="font-outfit text-xl md:text-2xl font-semibold text-white mb-3">Marco 3: Resultado
+                            Imediato</h4>
+                        <p class="text-slate-400 text-sm md:text-base max-w-md md:ml-auto">
+                            Sua planilha é atualizada em tempo real, a nota fiscal que voce emitiu é enviada por e-mail,
+                            e o
+                            cliente recebe uma notificação personalizada de confirmação pelo WhatsApp ou email em menos
+                            de 3
+                            segundos. Equipe livre para tarefas de alto valor.
+                        </p>
+                    </div>
+
+                    <div
+                        class="absolute left-6 md:left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-techDark border-4 border-slate-850 flex items-center justify-center z-20 transition-all duration-300 timeline-dot">
+                        <div class="w-3 h-3 rounded-full bg-slate-700 dot-inner transition-colors duration-300"></div>
+                    </div>
+
+                    <div class="hidden md:block"></div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Seção de Posicionamento Regional & Autoridade -->
+    <!-- AUTORIDADE: seção SÓLIDA — esconde canvas -->
+    <section id="autoridade" class="py-24 border-t border-slate-900 relative"
+        style="background:#071739;position:relative;z-index:2;">
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-techCyan/5 rounded-full blur-[100px] pointer-events-none">
+        </div>
+
+        <div class="max-w-5xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+
+                <div class="md:col-span-7">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-techCyan mb-6 uppercase tracking-wider">
+                        <i class="fa-solid fa-map-location-dot"></i> Suporte e Presença
+                    </div>
+                    <h3 class="font-outfit text-3xl md:text-4xl font-extrabold text-white mb-6 leading-tight">
+                        Parceria Estratégica no Grande ABC , Ribeirão Pires - SP
+                    </h3>
+                    <p class="text-slate-400 text-base md:text-lg mb-6 leading-relaxed">
+                        Baseados em **Ribeirão Pires - SP**, oferecemos soluções personalizadas com a agilidade e
+                        o atendimento a sua empresa precisa.
+                    </p>
+                    <p class="text-slate-400 text-base md:text-lg mb-8 leading-relaxed">
+                        Chega de suporte impessoal por e-mails automáticos com agências distantes. Nós vamos até a sua
+                        empresa, mapeamos os processos com você e garantimos acompanhamento presencial em todas as fases
+                        mais delicadas do projeto.
+                    </p>
+
+                    <!-- Metricas/Diferenciais -->
+                    <div class="grid grid-cols-2 gap-6 pt-6 border-t border-slate-800/60">
+                        <div>
+                            <div class="font-outfit text-2xl font-bold text-white mb-1">Grande ABC</div>
+                            <p class="text-xs text-slate-500 font-mono uppercase">Ribeirão Pires, Mauá, Santo André, S.
+                                Bernardo e S. Caetano</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Box Lateral de Autoridade -->
+                <div
+                    class="md:col-span-5 bg-slate-900/60 border border-slate-800/80 p-8 rounded-2xl backdrop-blur relative">
+                    <div
+                        class="absolute -top-3 -right-3 bg-techCyan text-techDark text-xs font-mono font-extrabold py-1 px-3 rounded-md uppercase shadow-lg shadow-techCyan/20">
+                        Atendimento Vip
+                    </div>
+                    <h4 class="font-outfit text-lg font-semibold text-white mb-4">Desenvolvimento Sob Medida</h4>
+
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-techCyan mt-0.5 text-base"></i>
+                            <span>Desenvolvedores gerenciando seu fluxo diretamente.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-techCyan mt-0.5 text-base"></i>
+                            <span>Integrações homologadas e documentadas com segurança de dados.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-techCyan mt-0.5 text-base"></i>
+                            <span>Suporte personalizado e ágil para sua empresa.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-circle-check text-techCyan mt-0.5 text-base"></i>
+                            <span>Código robusto para acompanhar seu crescimento.</span>
+                        </li>
+                    </ul>
+
+                    <div class="mt-8 pt-6 border-t border-slate-800/60 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full overflow-hidden border border-slate-700 bg-slate-800">
+                            <img src="./img/BrunoPerfil.jpg" alt="Bruno Mimura - Desenvolvedor de Software"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <div class="text-sm font-semibold text-white">Bruno Mimura</div>
+                            <div class="text-xs text-slate-500 font-mono">Fundador & Desenvolvedor de Software</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Contato & Formulário de Conversão -->
+    <!-- CONTATO: seção TRANSPARENTE — canvas aparece ao fundo -->
+    <section id="contato" class="py-24 relative overflow-hidden border-t border-slate-900/80"
+        style="background:transparent;z-index:1;">
+        <div
+            class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-techBlue/5 rounded-full blur-[100px] pointer-events-none">
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <div class="text-techGreen font-mono text-sm tracking-wider uppercase mb-3">DIAGNOSTICO GRATUITO</div>
+                <h2 class="font-outfit text-3xl md:text-4xl font-bold tracking-tight text-white mb-4">
+                    Receba um Mapeamento de Gargalos Grátis
+                </h2>
+                <p class="text-slate-400">
+                    Preencha o formulário abaixo em 45 segundos. Nossa equipe técnica analisará seus sistemas e proporá
+                    3 automações práticas para aplicar imediatamente.
+                </p>
+            </div>
+
+            <!-- Formulário Responsivo de Conversão B2B (Substituído por CTA do Modal SDR) -->
+            <div class="flex flex-col items-center justify-center bg-[#0b0f19]/80 border border-slate-800/80 rounded-3xl p-8 md:p-16 shadow-2xl backdrop-blur text-center max-w-2xl mx-auto">
+                <div class="w-16 h-16 rounded-full bg-techBlue/10 flex items-center justify-center mb-6 border border-techBlue/30 text-techBlue shadow-neon-blue">
+                    <i class="fa-solid fa-chart-line text-2xl"></i>
+                </div>
+                <h3 class="font-outfit text-xl md:text-2xl font-bold text-white mb-3">Inicie seu Diagnóstico Técnico</h3>
+                <p class="text-sm text-slate-400 mb-8 max-w-md">
+                    Descubra onde sua equipe está perdendo tempo com processos manuais e quais automações trarão mais retorno sobre investimento.
+                </p>
+                <button id="open-sdr-modal-btn"
+                    class="bg-emerald-500 hover:bg-white hover:text-techBlue text-white font-medium py-4 px-10 rounded-xl transition duration-300 shadow-neon-green flex items-center justify-center gap-3 text-lg md:text-xl w-full sm:w-auto">
+                    <i class="fa-solid fa-wand-magic-sparkles text-xl"></i> Começar Diagnóstico Gratuito
+                </button>
+                <div class="mt-6 flex items-center gap-2 text-xs text-slate-500">
+                    <i class="fa-solid fa-clock"></i>
+                    <span>Leva apenas 1 minuto • 100% Gratuito</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção de Contato -->
-    <section id="contact" class="contact-matrix">
-        <div class="container">
-            <div class="section-title">
-                <h2 class="title-neon">Pronto para Inovar?</h2>
-                <p>Vamos criar algo extraordinário juntos</p>
+    <!-- Rodapé Premium -->
+    <!-- FOOTER: sólido — esconde canvas -->
+    <footer class="border-t border-slate-900 py-16 text-slate-500 text-sm"
+        style="background:#071739;position:relative;z-index:2;">
+        <div class="max-w-7xl mx-auto px-6">
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+
+                <div class="md:col-span-1">
+                    <span class="font-outfit text-lg font-bold tracking-tight text-white block mb-4">
+                        DOT<span class="text-techCyan">•</span>INC<span
+                            class="text-xs text-techCyan/80 font-mono ml-1">BR</span>
+                    </span>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-6">
+                        Desenvolvimento de software e automação de sistemas focada em otimização de processos,
+                        resultanto em mais tempo e faturamento, atuando
+                        de forma próxima nas regiões do ABC Paulista, Ribeirão Pires.
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <a href="https://www.instagram.com/dotincbr" target="_blank"
+                            class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-white hover:border-slate-700 transition"
+                            aria-label="Instagram">
+                            <i class="fa-brands fa-instagram text-xs"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/dotincbr" target="_blank"
+                            class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-white hover:border-slate-700 transition"
+                            aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in text-xs"></i>
+                        </a>
+                        <a href="https://github.com/Brun0DevMimura" target="_blank"
+                            class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center hover:text-white hover:border-slate-700 transition"
+                            aria-label="GitHub">
+                            <i class="fa-brands fa-github text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:col-span-1">
+                    <h5 class="text-white font-semibold text-xs tracking-wider uppercase mb-4">Área de Atuação</h5>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li>Automação Software</li>
+                        <li>Sistemas Web e CRM</li>
+                        <li>Integração de Sistemas e APIs</li>
+                        <li>Desenvolvimento de Software</li>
+                        <li>WhatsApp Automation</li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-1">
+                    <h5 class="text-white font-semibold text-xs tracking-wider uppercase mb-4">Navegação</h5>
+                    <ul class="space-y-2 text-xs text-slate-400">
+                        <li><a href="#dores" class="hover:text-white transition">Dores que Eliminamos</a></li>
+                        <li><a href="#como-funciona" class="hover:text-white transition">Fluxo de Trabalho</a></li>
+                        <li><a href="./portifolio.html" class="hover:text-white transition">Nosso Portfólio</a></li>
+                        <li><a href="./sobre.html" class="hover:text-white transition">Sobre a DotInc</a></li>
+                        <li><a href="#contato" class="hover:text-white transition">Diagnóstico Grátis</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-1">
+                    <h5 class="text-white font-semibold text-xs tracking-wider uppercase mb-4">Contato Técnico</h5>
+                    <ul class="space-y-3 text-xs text-slate-400">
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-envelope text-techCyan"></i>
+                            <span>dot.inc.care@gmail.com</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-phone text-techCyan"></i>
+                            <span>(11) 97079-7269</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-techCyan"></i>
+                            <span>Ribeirão Pires, SP - Brasil</span>
+                        </li>
+                        <li class="pt-2">
+                            <a href="./cartao.html"
+                                class="inline-flex items-center gap-2 bg-slate-900/60 hover:bg-slate-900 border border-slate-800 hover:border-techBlue text-white text-xs font-semibold py-2 px-4 rounded-xl transition duration-300 shadow-sm group">
+                                <i
+                                    class="fa-solid fa-address-card text-techBlue group-hover:scale-110 transition-transform"></i>
+                                Cartão de Visitas Digital
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
-            <!-- <form class="form-hologram">
-                <div class="form-group">
-                    <label class="form-label">Nome Completo</label>
-                    <input type="text" class="form-input" required>
+
+            <div
+                class="pt-8 border-t border-slate-900 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-600">
+                <p>&copy; 2026 DotIncBR. Todos os direitos reservados. Ribeirão Pires, Mauá, Suzano, ABC, Alto Tietê.
+                </p>
+                <div class="flex items-center gap-4">
+                    <a href="/politica-de-privacidade" class="hover:text-slate-400 transition">Política de
+                        Privacidade</a>
+                    <span>|</span>
+                    <a href="/termos-de-uso" class="hover:text-slate-400 transition">Termos de Uso</a>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">E-mail</label>
-                    <input type="email" class="form-input" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Seu Projeto</label>
-                    <textarea class="form-input" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="btn-cyber">Enviar para o Futuro</button>
-            </form> -->
+            </div>
+
         </div>
-    </section>
+    </footer>
 
-    <footer class="dot-footer">
-  <div class="footer-container">
-    
-    <!-- Coluna 1: Sobre a Empresa -->
-    <div class="footer-col">
-      <h3 class="footer-logo">dot Inc br</h3>
-      <p>Criamos sites e sistemas personalizados que impulsionam seu negócio. Tecnologia, inovação e resultados reais.</p>
-      <div class="social-icons">
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      </div>
-    </div>
-
-    <!-- Coluna 2: Links Rápidos -->
-    <div class="footer-col">
-      <h4>Links Rápidos</h4>
-      <ul>
-        <li><a href="/">Início</a></li>
-        <li><a href="/servicos">Serviços</a></li>
-        <li><a href="/projetos">Projetos</a></li>
-        <li><a href="/sobre">Sobre Nós</a></li>
-        <li><a href="/contato">Contato</a></li>
-      </ul>
-    </div>
-
-    <!-- Coluna 3: Contato -->
-    <div class="footer-col">
-      <h4>Contato</h4>
-      <ul class="contact-info">
-        <li><i class="fas fa-map-marker-alt"></i> São Paulo, SP - Brasil</li>
-        <li><i class="fas fa-envelope"></i> dot.inc.care@gmail.com</li>
-        <li><i class="fas fa-phone"></i> (11) 97079-7269</li>
-        <li><i class="fas fa-clock"></i> Seg - Sex: 9h às 18h</li>
-      </ul>
-    </div>
-
-    <!-- Coluna 4: Newsletter (opcional) -->
-    <div class="footer-col">
-      <h4>Fique por dentro</h4>
-      <p>Receba novidades e dicas exclusivas diretamente no seu e-mail.</p>
-      <form class="newsletter-form">
-        <input type="email" placeholder="Seu e-mail" required>
-        <button type="submit">Inscrever</button>
-      </form>
-    </div>
-
-  </div>
-
-  <!-- Linha de Copyright -->
-  <div class="footer-bottom">
-    <p>&copy; 2025 dot Inc br. Todos os direitos reservados. | <a href="/politica-de-privacidade">Política de Privacidade</a></p>
-  </div>
-</footer>
-
-    <!-- Botão Flutuante do WhatsApp -->
-    <a href="https://wa.me/5511970797269?text=Olá%20Bruno,%20gostaria%20de%20conversar%20sobre%20um%20projeto"
-        class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-        <span class="whatsapp-tooltip">Fale diretamente comigo!</span>
+    <!-- Botão Flutuante -->
+    <a href="https://wa.me/5511970797269?text=Ol%C3%A1%20Bruno,%20gostaria%20de%20solicitar%20um%20diagn%C3%B3stico%20de%20automa%C3%A7%C3%A3o%20para%20minha%20empresa."
+        class="fixed bottom-6 right-6 w-14 h-14 bg-emerald-500 hover:bg-white hover:text-techBlue text-white rounded-full flex items-center justify-center text-2xl shadow-neon-green hover:scale-105 transition duration-300 z-40 group"
+        target="_blank" aria-label="Falar com Especialista Técnico pelo WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span
+            class="absolute right-16 bg-slate-900 border border-slate-800 text-xs font-medium text-slate-200 py-1.5 px-3 rounded-lg shadow-md whitespace-nowrap opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition duration-300 pointer-events-none">
+            Diagnóstico pelo WhatsApp!
+        </span>
     </a>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Modal de Diagnóstico SDR (Multi-step) -->
+    <div id="sdr-modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-techDark/90 backdrop-blur-md">
+        <div id="sdr-modal-card" class="bg-[#0b0f19] border border-slate-800 rounded-3xl w-full max-w-lg overflow-hidden shadow-2xl relative transform scale-95 opacity-0 transition-all duration-300">
+            
+            <!-- Modal Header -->
+            <div class="p-6 md:p-8 pb-4 border-b border-slate-900 flex items-center justify-between">
+                <div>
+                    <h4 class="font-outfit text-lg md:text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-gears text-techBlue"></i> Diagnóstico de Automação
+                    </h4>
+                    <p class="text-xs text-slate-500 font-mono mt-1">Mapeamento de Gargalos Operacionais</p>
+                </div>
+                <button id="close-sdr-modal-btn" class="w-8 h-8 rounded-full bg-slate-950/80 border border-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:border-slate-700 transition" aria-label="Fechar Modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full h-1 bg-slate-900 relative">
+                <div id="sdr-progress-bar" class="h-full bg-gradient-to-r from-techBlue to-emerald-500 w-1/4 transition-all duration-500"></div>
+            </div>
+
+            <!-- Modal Content (Steps Form) -->
+            <form id="sdr-form" class="p-6 md:p-8">
+                
+                <!-- STEP 1: Contato Inicial -->
+                <div class="sdr-step block" data-step="1">
+                    <h5 class="font-outfit text-base font-semibold text-white mb-6 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-techBlue/20 text-techBlue text-xs flex items-center justify-center font-mono">1</span>
+                        Como podemos te contatar?
+                    </h5>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="sdr-name" class="block text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-2">Nome Completo *</label>
+                            <input type="text" id="sdr-name" required
+                                class="w-full bg-slate-950/80 border border-slate-800 focus:border-techBlue text-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none transition"
+                                placeholder="Seu nome completo">
+                        </div>
+                        <div>
+                            <label for="sdr-whatsapp" class="block text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-2">WhatsApp Corporativo *</label>
+                            <input type="tel" id="sdr-whatsapp" required
+                                class="w-full bg-slate-950/80 border border-slate-800 focus:border-techBlue text-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none transition"
+                                placeholder="DDD + Número (Ex: 11 99999-9999)">
+                        </div>
+                        <div>
+                            <label for="sdr-email" class="block text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-2">E-mail Profissional *</label>
+                            <input type="email" id="sdr-email" required
+                                class="w-full bg-slate-950/80 border border-slate-800 focus:border-techBlue text-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none transition"
+                                placeholder="roberto@empresa.com.br">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Dados da Empresa -->
+                <div class="sdr-step hidden" data-step="2">
+                    <h5 class="font-outfit text-base font-semibold text-white mb-6 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-techBlue/20 text-techBlue text-xs flex items-center justify-center font-mono">2</span>
+                        Sobre a sua Empresa
+                    </h5>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="sdr-company" class="block text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-2">Nome da Empresa *</label>
+                            <input type="text" id="sdr-company" required
+                                class="w-full bg-slate-950/80 border border-slate-800 focus:border-techBlue text-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none transition"
+                                placeholder="Nome fantasia da empresa">
+                        </div>
+                        <div>
+                            <label for="sdr-segment" class="block text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-2">Setor de Atuação *</label>
+                            <select id="sdr-segment" required
+                                class="w-full bg-slate-950/80 border border-slate-800 focus:border-techBlue text-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none transition">
+                                <option value="" disabled selected>Selecione o setor...</option>
+                                <option value="Varejo / E-commerce">Varejo / E-commerce</option>
+                                <option value="Prestação de Serviços">Prestação de Serviços</option>
+                                <option value="Tecnologia / Software">Tecnologia / Software</option>
+                                <option value="Indústria / Produção">Indústria / Produção</option>
+                                <option value="Saúde / Clínicas">Saúde / Clínicas</option>
+                                <option value="Logística / Transportes">Logística / Transportes</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="sdr-team-size" class="block text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-2">Tamanho da Equipe *</label>
+                            <select id="sdr-team-size" required
+                                class="w-full bg-slate-950/80 border border-slate-800 focus:border-techBlue text-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none transition">
+                                <option value="" disabled selected>Quantos colaboradores?</option>
+                                <option value="1-5 pessoas">1 a 5 pessoas</option>
+                                <option value="6-20 pessoas">6 a 20 pessoas</option>
+                                <option value="21-100 pessoas">21 a 100 pessoas</option>
+                                <option value="Mais de 100">Mais de 100 pessoas</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Mapeamento de Gargalos (SDR) -->
+                <div class="sdr-step hidden" data-step="3">
+                    <h5 class="font-outfit text-base font-semibold text-white mb-6 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-techBlue/20 text-techBlue text-xs flex items-center justify-center font-mono">3</span>
+                        Onde está o gargalo operacional?
+                    </h5>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="sdr-pain" class="block text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-2">Maior Dor Operacional *</label>
+                            <select id="sdr-pain" required
+                                class="w-full bg-slate-950/80 border border-slate-800 focus:border-techBlue text-slate-100 rounded-xl px-4 py-3 text-sm focus:outline-none transition mb-2">
+                                <option value="" disabled selected>Qual o maior gargalo?</option>
+                                <option value="Digitação manual de dados / Planilhas">Digitação manual / Excesso de planilhas</option>
+                                <option value="Falta de CRM ou perda de leads/clientes">Perda de leads ou falta de acompanhamento</option>
+                                <option value="Sistemas isolados que não se comunicam">Sistemas isolados / Falta de integração</option>
+                                <option value="Atendimento manual lento no WhatsApp">Atendimento manual e lento no WhatsApp</option>
+                                <option value="Outro">Outro (especificar abaixo)</option>
+                            </select>
+                            <textarea id="sdr-pain-details" rows="2" 
+                                class="w-full bg-slate-950/80 border border-slate-800 focus:border-techBlue text-slate-100 rounded-xl px-4 py-2 text-xs focus:outline-none transition"
+                                placeholder="Opcional: Descreva brevemente o gargalo ou as tarefas manuais..."></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-mono text-slate-400 uppercase tracking-wider mb-2">Quais ferramentas vocês usam hoje? (Selecione as aplicáveis)</label>
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-800 bg-slate-950/30 cursor-pointer hover:border-slate-700 transition select-none">
+                                    <input type="checkbox" name="sdr-tools" value="Excel/Sheets" class="rounded bg-slate-950 border-slate-800 text-techBlue focus:ring-0 focus:ring-offset-0">
+                                    <span>Excel / Sheets</span>
+                                </label>
+                                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-800 bg-slate-950/30 cursor-pointer hover:border-slate-700 transition select-none">
+                                    <input type="checkbox" name="sdr-tools" value="CRM" class="rounded bg-slate-950 border-slate-800 text-techBlue focus:ring-0 focus:ring-offset-0">
+                                    <span>CRM (RD, Hubspot...)</span>
+                                </label>
+                                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-800 bg-slate-950/30 cursor-pointer hover:border-slate-700 transition select-none">
+                                    <input type="checkbox" name="sdr-tools" value="ERP/Financeiro" class="rounded bg-slate-950 border-slate-800 text-techBlue focus:ring-0 focus:ring-offset-0">
+                                    <span>ERP / Financeiro</span>
+                                </label>
+                                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-800 bg-slate-950/30 cursor-pointer hover:border-slate-700 transition select-none">
+                                    <input type="checkbox" name="sdr-tools" value="WhatsApp Web" class="rounded bg-slate-950 border-slate-800 text-techBlue focus:ring-0 focus:ring-offset-0">
+                                    <span>WhatsApp Manual</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 4: Revisão & Finalização -->
+                <div class="sdr-step hidden" data-step="4">
+                    <h5 class="font-outfit text-base font-semibold text-white mb-4 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-techBlue/20 text-techBlue text-xs flex items-center justify-center font-mono">4</span>
+                        Quase lá! Revise seus dados
+                    </h5>
+                    
+                    <div class="bg-slate-950/60 border border-slate-900 rounded-2xl p-4 space-y-3 text-xs mb-6 max-h-[220px] overflow-y-auto">
+                        <div class="flex justify-between border-b border-slate-900 pb-1.5">
+                            <span class="text-slate-500">Nome:</span>
+                            <span id="review-name" class="font-semibold text-slate-200">-</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-900 pb-1.5">
+                            <span class="text-slate-500">WhatsApp:</span>
+                            <span id="review-whatsapp" class="font-semibold text-slate-200">-</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-900 pb-1.5">
+                            <span class="text-slate-500">E-mail:</span>
+                            <span id="review-email" class="font-semibold text-slate-200">-</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-900 pb-1.5">
+                            <span class="text-slate-500">Empresa:</span>
+                            <span id="review-company" class="font-semibold text-slate-200">-</span>
+                        </div>
+                        <div class="flex justify-between border-b border-slate-900 pb-1.5">
+                            <span class="text-slate-500">Setor / Equipe:</span>
+                            <span id="review-firmographics" class="font-semibold text-slate-200">-</span>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <span class="text-slate-500">Principal gargalo mapeado:</span>
+                            <span id="review-pain" class="font-semibold text-slate-200 italic">-</span>
+                        </div>
+                    </div>
+
+                    <div class="text-center p-3 rounded-xl bg-emerald-500/5 border border-emerald-500/10 text-slate-400 text-xs flex items-start gap-2 mb-6">
+                        <i class="fa-solid fa-circle-info text-emerald-400 mt-0.5"></i>
+                        <span class="text-left leading-normal">Ao enviar, o seu diagnóstico será analisado e enviado para nosso pipeline. Você poderá iniciar a conversa direta no WhatsApp na tela seguinte.</span>
+                    </div>
+                </div>
+
+                <!-- Footer Navigation Buttons -->
+                <div class="flex items-center justify-between pt-6 border-t border-slate-900 mt-6 gap-4">
+                    <button type="button" id="sdr-prev-btn" class="px-5 py-3 rounded-xl border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 transition text-sm font-medium flex items-center gap-2 opacity-0 pointer-events-none">
+                        <i class="fa-solid fa-arrow-left"></i> Voltar
+                    </button>
+                    
+                    <button type="button" id="sdr-next-btn" class="px-6 py-3 bg-techBlue hover:bg-[#d8b082] text-techDark font-bold rounded-xl transition flex items-center gap-2 text-sm">
+                        Próximo <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    
+                    <button type="submit" id="sdr-submit-btn" class="hidden px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white font-bold rounded-xl transition items-center gap-2 text-sm shadow-neon-green">
+                        Enviar Respostas <i class="fa-solid fa-circle-check"></i>
+                    </button>
+                </div>
+
+            </form>
+
+            <!-- Success screen (Hidden by default, displayed over the steps) -->
+            <div id="sdr-success-screen" class="absolute inset-0 bg-[#0b0f19] z-10 hidden flex-col items-center justify-center p-8 text-center">
+                <div class="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center mb-6 border border-emerald-500/30 text-emerald-400">
+                    <i class="fa-solid fa-circle-check text-3xl animate-bounce"></i>
+                </div>
+                <h4 class="font-outfit text-2xl font-bold text-white mb-2">Diagnóstico Enviado!</h4>
+                <p class="text-sm text-slate-400 mb-8 max-w-xs mx-auto leading-relaxed">
+                    Seus dados foram integrados. Para acelerar seu atendimento e falar diretamente com o desenvolvedor, clique no botão abaixo.
+                </p>
+                <div class="flex flex-col gap-3 w-full max-w-xs">
+                    <a href="#" id="sdr-whatsapp-redirect-btn" target="_blank"
+                       class="w-full bg-emerald-500 hover:bg-white hover:text-techBlue text-white font-medium py-3.5 px-6 rounded-xl transition duration-300 flex items-center justify-center gap-2 text-base">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Iniciar no WhatsApp
+                    </a>
+                    <button type="button" id="sdr-success-close-btn"
+                            class="w-full bg-slate-900 hover:bg-slate-800 text-slate-300 font-medium py-3 px-6 rounded-xl transition border border-slate-800 text-sm">
+                        Fechar Janela
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts de Animação e Interação -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
     <script>
-        // Controle do menu mobile
-        const menuToggle = document.getElementById('menuToggle');
-        const closeMenu = document.getElementById('closeMenu');
-        const mobileMenu = document.getElementById('mobileMenu');
+        gsap.registerPlugin(ScrollTrigger);
 
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
+        document.addEventListener('DOMContentLoaded', () => {
 
-        closeMenu.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
+            // MENU MOBILE
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const closeMenuCta = document.getElementById('close-menu-cta');
+            const mobileLinks = mobileMenu.querySelectorAll('nav a');
 
-        // Fechar menu ao clicar em links
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
+            const openMenu = () => {
+                mobileMenu.classList.remove('translate-x-full');
+                document.body.classList.add('overflow-hidden');
+            };
+
+            const closeMenu = () => {
+                mobileMenu.classList.add('translate-x-full');
+                document.body.classList.remove('overflow-hidden');
+            };
+
+            mobileMenuBtn.addEventListener('click', openMenu);
+            mobileMenuClose.addEventListener('click', closeMenu);
+            closeMenuCta.addEventListener('click', closeMenu);
+            mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+
+            // ANIMAÇÃO DA LINHA GUIA SVG
+            const path = document.querySelector('#svg-line-active');
+            const pathLength = path.getTotalLength();
+
+            gsap.set(path, {
+                strokeDasharray: pathLength,
+                strokeDashoffset: pathLength
             });
-        });
 
-        // Mostrar navegação desktop em telas grandes
-        function checkScreenSize() {
-            const navImmersive = document.querySelector('.nav-immersive');
-            const navMobile = document.querySelector('.nav-mobile-header');
-
-            if (window.innerWidth >= 1024) {
-                navImmersive.style.display = 'flex';
-                navMobile.style.display = 'none';
-            } else {
-                navImmersive.style.display = 'none';
-                navMobile.style.display = 'flex';
-            }
-        }
-
-        // Configuração das partículas
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 60, density: { enable: true, value_area: 800 } },
-                color: { value: "#00B4D8" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#00B4D8",
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: "none",
-                    random: true,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false
+            gsap.to(path, {
+                strokeDashoffset: 0,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '#timeline-section',
+                    start: 'top 30%',
+                    end: 'bottom 70%',
+                    scrub: 0.8
                 }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "grab" },
-                    onclick: { enable: true, mode: "push" },
-                    resize: true
-                }
-            }
-        });
+            });
 
-        // Inicializar e monitorar tamanho da tela
-        checkScreenSize();
-        window.addEventListener('resize', checkScreenSize);
 
-        // Efeito de digitação no título
-        document.addEventListener('DOMContentLoaded', function () {
-            const heroText = document.querySelector('.hero-glitch');
-            if (heroText && window.innerWidth > 768) {
-                const originalText = heroText.textContent;
-                heroText.textContent = '';
+            // ANIMAÇÃO DE REVELAÇÃO DOS MARCOS
+            const steps = document.querySelectorAll('.timeline-step');
 
-                let i = 0;
-                const typeWriter = () => {
-                    if (i < originalText.length) {
-                        heroText.textContent += originalText.charAt(i);
-                        i++;
-                        setTimeout(typeWriter, 50);
+            steps.forEach((step) => {
+                const dot = step.querySelector('.timeline-dot');
+                const dotInner = dot.querySelector('.dot-inner');
+                const content = step.querySelector('div:not(.absolute)');
+
+                gsap.fromTo(content,
+                    { opacity: 0, y: 30 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: step,
+                            start: 'top 75%',
+                            toggleActions: 'play none none none'
+                        }
                     }
-                };
-                setTimeout(typeWriter, 1000);
+                );
+
+                ScrollTrigger.create({
+                    trigger: step,
+                    start: 'top 50%',
+                    onEnter: () => {
+                        dot.classList.add('border-techCyan', 'scale-110');
+                        dot.classList.remove('border-slate-850');
+                        dotInner.classList.add('bg-techCyan');
+                        dotInner.classList.remove('bg-slate-700');
+                        gsap.to(dot, { boxShadow: '0 0 15px rgba(6, 182, 212, 0.6)', duration: 0.3 });
+                    },
+                    onLeaveBack: () => {
+                        dot.classList.remove('border-techCyan', 'scale-110');
+                        dot.classList.add('border-slate-850');
+                        dotInner.classList.remove('bg-techCyan');
+                        dotInner.classList.add('bg-slate-700');
+                        gsap.to(dot, { boxShadow: 'none', duration: 0.3 });
+                    }
+                });
+            });
+
+            // MODAL SDR E DIAGNÓSTICO MULTI-STEP
+            const sdrModal = document.getElementById('sdr-modal');
+            const sdrModalCard = document.getElementById('sdr-modal-card');
+            const openSdrModalBtn = document.getElementById('open-sdr-modal-btn');
+            const closeSdrModalBtn = document.getElementById('close-sdr-modal-btn');
+            const sdrSuccessCloseBtn = document.getElementById('sdr-success-close-btn');
+            const sdrForm = document.getElementById('sdr-form');
+            const sdrPrevBtn = document.getElementById('sdr-prev-btn');
+            const sdrNextBtn = document.getElementById('sdr-next-btn');
+            const sdrSubmitBtn = document.getElementById('sdr-submit-btn');
+            const sdrProgressBar = document.getElementById('sdr-progress-bar');
+            const sdrSuccessScreen = document.getElementById('sdr-success-screen');
+            const sdrWhatsappRedirectBtn = document.getElementById('sdr-whatsapp-redirect-btn');
+
+            let sdrCurrentStep = 1;
+            const sdrTotalSteps = 4;
+            const N8N_WEBHOOK_URL = ''; // Insira seu webhook do n8n aqui
+
+            // Function to open SDR Modal
+            const openSdrModal = () => {
+                if (sdrModal && sdrModalCard) {
+                    sdrModal.classList.remove('hidden');
+                    sdrModal.classList.add('flex');
+                    setTimeout(() => {
+                        sdrModalCard.classList.remove('scale-95', 'opacity-0');
+                        sdrModalCard.classList.add('scale-100', 'opacity-100');
+                    }, 10);
+                    document.body.classList.add('overflow-hidden');
+                    resetSdrForm();
+                }
+            };
+
+            // Open Modal
+            if (openSdrModalBtn) {
+                openSdrModalBtn.addEventListener('click', openSdrModal);
             }
+
+            // Check URL parameters for openSdr=true
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('openSdr') === 'true') {
+                openSdrModal();
+            }
+
+            // Close Modal
+            const closeSdrModal = () => {
+                sdrModalCard.classList.remove('scale-100', 'opacity-100');
+                sdrModalCard.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    sdrModal.classList.remove('flex');
+                    sdrModal.classList.add('hidden');
+                    document.body.classList.remove('overflow-hidden');
+                }, 300);
+            };
+
+            if (closeSdrModalBtn) closeSdrModalBtn.addEventListener('click', closeSdrModal);
+            if (sdrSuccessCloseBtn) sdrSuccessCloseBtn.addEventListener('click', closeSdrModal);
+
+            if (sdrModal) {
+                sdrModal.addEventListener('click', (e) => {
+                    if (e.target === sdrModal) {
+                        closeSdrModal();
+                    }
+                });
+            }
+
+            const resetSdrForm = () => {
+                sdrCurrentStep = 1;
+                showSdrStep(sdrCurrentStep);
+                sdrForm.reset();
+                sdrSuccessScreen.classList.add('hidden');
+                sdrSuccessScreen.classList.remove('flex');
+            };
+
+            const validateSdrStep = (stepNum) => {
+                const stepContainer = document.querySelector(`.sdr-step[data-step="${stepNum}"]`);
+                const requiredInputs = stepContainer.querySelectorAll('[required]');
+                let isValid = true;
+
+                requiredInputs.forEach(input => {
+                    if (!input.value.trim()) {
+                        isValid = false;
+                        input.classList.add('border-red-500/50');
+                        
+                        const removeError = () => {
+                            input.classList.remove('border-red-500/50');
+                            input.removeEventListener('input', removeError);
+                            input.removeEventListener('change', removeError);
+                        };
+                        
+                        input.addEventListener('input', removeError);
+                        input.addEventListener('change', removeError);
+                    }
+                });
+                return isValid;
+            };
+
+            const showSdrStep = (stepNum) => {
+                document.querySelectorAll('.sdr-step').forEach(step => {
+                    step.classList.add('hidden');
+                    step.classList.remove('block');
+                });
+
+                const activeStep = document.querySelector(`.sdr-step[data-step="${stepNum}"]`);
+                if (activeStep) {
+                    activeStep.classList.remove('hidden');
+                    activeStep.classList.add('block');
+                }
+
+                // Progress Bar
+                const progressPercentage = (stepNum / sdrTotalSteps) * 100;
+                if (sdrProgressBar) {
+                    sdrProgressBar.style.width = `${progressPercentage}%`;
+                }
+
+                // Buttons configuration
+                if (stepNum === 1) {
+                    sdrPrevBtn.classList.add('opacity-0', 'pointer-events-none');
+                } else {
+                    sdrPrevBtn.classList.remove('opacity-0', 'pointer-events-none');
+                }
+
+                if (stepNum === sdrTotalSteps) {
+                    sdrNextBtn.classList.add('hidden');
+                    sdrSubmitBtn.classList.remove('hidden');
+                    sdrSubmitBtn.classList.add('flex');
+                    
+                    // Populate review page
+                    document.getElementById('review-name').textContent = document.getElementById('sdr-name').value;
+                    document.getElementById('review-whatsapp').textContent = document.getElementById('sdr-whatsapp').value;
+                    document.getElementById('review-email').textContent = document.getElementById('sdr-email').value;
+                    document.getElementById('review-company').textContent = document.getElementById('sdr-company').value;
+                    
+                    const segment = document.getElementById('sdr-segment').value;
+                    const size = document.getElementById('sdr-team-size').value;
+                    document.getElementById('review-firmographics').textContent = `${segment} • ${size}`;
+                    
+                    const pain = document.getElementById('sdr-pain').value;
+                    document.getElementById('review-pain').textContent = pain;
+                } else {
+                    sdrNextBtn.classList.remove('hidden');
+                    sdrSubmitBtn.classList.add('hidden');
+                    sdrSubmitBtn.classList.remove('flex');
+                }
+            };
+
+            if (sdrNextBtn) {
+                sdrNextBtn.addEventListener('click', () => {
+                    if (validateSdrStep(sdrCurrentStep)) {
+                        sdrCurrentStep++;
+                        showSdrStep(sdrCurrentStep);
+                    }
+                });
+            }
+
+            if (sdrPrevBtn) {
+                sdrPrevBtn.addEventListener('click', () => {
+                    if (sdrCurrentStep > 1) {
+                        sdrCurrentStep--;
+                        showSdrStep(sdrCurrentStep);
+                    }
+                });
+            }
+
+            if (sdrForm) {
+                sdrForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const checkedTools = Array.from(document.querySelectorAll('input[name="sdr-tools"]:checked'))
+                        .map(el => el.value);
+
+                    const formData = {
+                        name: document.getElementById('sdr-name').value,
+                        whatsapp: document.getElementById('sdr-whatsapp').value,
+                        email: document.getElementById('sdr-email').value,
+                        company: document.getElementById('sdr-company').value,
+                        segment: document.getElementById('sdr-segment').value,
+                        teamSize: document.getElementById('sdr-team-size').value,
+                        pain: document.getElementById('sdr-pain').value,
+                        painDetails: document.getElementById('sdr-pain-details').value,
+                        currentTools: checkedTools.join(', ') || 'Nenhuma/Não especificado',
+                        submittedAt: new Date().toISOString(),
+                        source: 'Diagnóstico Gratuito Modal LP'
+                    };
+
+                    sdrSubmitBtn.disabled = true;
+                    const originalBtnContent = sdrSubmitBtn.innerHTML;
+                    sdrSubmitBtn.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin"></i> Enviando...';
+
+                    // 1. Submit to n8n Webhook if URL is configured
+                    try {
+                        if (N8N_WEBHOOK_URL && N8N_WEBHOOK_URL.trim() !== '') {
+                            await fetch(N8N_WEBHOOK_URL, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(formData)
+                            });
+                        }
+                    } catch (err) {
+                        console.error('Erro ao enviar para o webhook n8n:', err);
+                    }
+
+                    // 2. Prepare WhatsApp Redirect URL
+                    const toolsText = checkedTools.length > 0 ? checkedTools.join(', ') : 'Não informado';
+                    const textMessage = `Olá Bruno, acabei de solicitar um diagnóstico de automação!
+
+*Dados do Lead:*
+• Nome: ${formData.name}
+• WhatsApp: ${formData.whatsapp}
+• E-mail: ${formData.email}
+• Empresa: ${formData.company}
+• Segmento: ${formData.segment}
+• Equipe: ${formData.teamSize}
+
+*Gargalo Operacional Mapeado:*
+• Dor principal: ${formData.pain}
+• Detalhes: ${formData.painDetails || 'Nenhum'}
+• Ferramentas atuais: ${toolsText}`;
+
+                    const encodedText = encodeURIComponent(textMessage);
+                    const whatsappUrl = `https://wa.me/5511970797269?text=${encodedText}`;
+                    sdrWhatsappRedirectBtn.href = whatsappUrl;
+
+                    // 3. Show Success Screen
+                    sdrSubmitBtn.disabled = false;
+                    sdrSubmitBtn.innerHTML = originalBtnContent;
+                    
+                    sdrSuccessScreen.classList.remove('hidden');
+                    sdrSuccessScreen.classList.add('flex');
+                });
+            }
+
+            window.addEventListener('resize', () => {
+                ScrollTrigger.refresh();
+            });
+
+            // ==========================================
+            // XICARA FRAME-BY-FRAME — FULL PAGE SCROLL & PRELOADER
+            // ==========================================
+            const canvas = document.getElementById('xicara-canvas');
+            const ctx = canvas.getContext('2d');
+            const totalFrames = 83;
+
+            const frameFiles = Array.from({ length: totalFrames }, (_, i) => {
+                const d = (i % 3 === 1) ? '0.06' : '0.07';
+                return `./img/xicarasplit/frame_${String(i).padStart(3, '0')}_delay-${d}s.gif`;
+            });
+
+            const preloader = document.getElementById('preloader');
+            const preloaderBar = document.getElementById('preloader-bar');
+            const preloaderStatus = document.getElementById('preloader-status');
+
+            let loadedImages = 0;
+            let progress = 0;
+            let preloaderFinished = false;
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            function drawFrame(idx) {
+                const img = frames[idx];
+                if (!img || !img.complete || !img.naturalWidth) return;
+                const cw = canvas.width, ch = canvas.height;
+                const iw = img.naturalWidth, ih = img.naturalHeight;
+                const scale = Math.max(cw / iw, ch / ih);
+                const dw = iw * scale, dh = ih * scale;
+                ctx.clearRect(0, 0, cw, ch);
+                ctx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+            }
+
+            const finishLoading = () => {
+                if (preloaderFinished) return;
+                preloaderFinished = true;
+                preloaderBar.style.width = '100%';
+                preloaderStatus.textContent = "SISTEMA PRONTO";
+
+                setTimeout(() => {
+                    gsap.to(preloader, {
+                        opacity: 0,
+                        y: -40,
+                        duration: 0.6,
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            preloader.style.display = 'none';
+                            preloader.style.pointerEvents = 'none';
+                        }
+                    });
+                }, 300);
+            };
+
+            function imageLoaded() {
+                loadedImages++;
+                // 90% progress is based on image preload
+                const imgProgress = Math.round((loadedImages / totalFrames) * 90);
+                if (imgProgress > progress) {
+                    progress = imgProgress;
+                    preloaderBar.style.width = `${progress}%`;
+                    if (progress < 30) {
+                        preloaderStatus.textContent = "INICIALIZANDO SISTEMA...";
+                    } else if (progress < 60) {
+                        preloaderStatus.textContent = "CARREGANDO MÓDULOS...";
+                    } else {
+                        preloaderStatus.textContent = `CONECTANDO APIS... ${Math.round((loadedImages / totalFrames) * 100)}%`;
+                    }
+                }
+
+                if (loadedImages === 1) {
+                    drawFrame(0);
+                }
+
+                if (loadedImages === totalFrames) {
+                    finishLoading();
+                }
+            }
+
+            const frames = frameFiles.map((src, i) => {
+                const img = new Image();
+                img.onload = imageLoaded;
+                img.onerror = imageLoaded;
+                img.src = src;
+                return img;
+            });
+
+            if (frames[0] && frames[0].complete) {
+                drawFrame(0);
+            }
+
+            window.addEventListener('load', () => {
+                if (loadedImages >= totalFrames) {
+                    finishLoading();
+                }
+            });
+
+            // Fallback de segurança (3.5s)
+            setTimeout(() => {
+                finishLoading();
+            }, 3500);
+
+            const frameObj = { frame: 0 };
+            gsap.to(frameObj, {
+                frame: totalFrames - 1,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: document.body,
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    scrub: 0.6,
+                    onUpdate: self => {
+                        const idx = Math.round(self.progress * (totalFrames - 1));
+                        drawFrame(Math.max(0, Math.min(idx, totalFrames - 1)));
+                    }
+                }
+            });
+
         });
     </script>
 </body>
