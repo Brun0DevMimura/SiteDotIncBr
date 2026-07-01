@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR" dir="ltr" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ficha de Pré‑Avaliação – FisioBazan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    }
+  </script>
+  <style>
+    /* Glassmorphism background - Dark Mode Only */
+    body {
+      background: linear-gradient(135deg, #111827 0%, #030712 100%);
+      color: #f3f4f6; /* Fallback text color if Tailwind fails to load */
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    }
+    .glass {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px); /* Safari support */
+      border: 1px solid rgba(75, 85, 99, 0.4);
+    }
+
+    /* --- FALLBACK TAILWIND STYLES (for offline/Safari CDN blocking compatibility) --- */
+    .w-full { width: 100%; }
+    .max-w-4xl { max-width: 56rem; }
+    .mx-auto { margin-left: auto; margin-right: auto; }
+    .rounded-2xl { border-radius: 1rem; }
+    .rounded-xl { border-radius: 0.75rem; }
+    .rounded-lg { border-radius: 0.5rem; }
+    .shadow-2xl { box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+    .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+    
+    /* Padding & Margins */
+    .p-4 { padding: 1rem; }
+    .p-2 { padding: 0.5rem; }
+    .p-3 { padding: 0.75rem; }
+    .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+    .px-4 { padding-left: 1rem; padding-right: 1rem; }
+    .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+    .mt-1 { margin-top: 0.25rem; }
+    .mt-8 { margin-top: 2rem; }
+    .mb-6 { margin-bottom: 1.5rem; }
+    .pb-6 { padding-bottom: 1.5rem; }
+    .pt-4 { padding-top: 1rem; }
+    .pb-2 { padding-bottom: 0.5rem; }
+    
+    /* Layout */
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-between { justify-content: space-between; }
+    .justify-center { justify-content: center; }
+    .gap-4 { gap: 1rem; }
+    .gap-2 { gap: 0.5rem; }
+    .flex-1 { flex: 1 1 0%; }
+    
+    /* Spacing between children */
+    .space-y-4 > * + * { margin-top: 1rem; }
+    .space-y-6 > * + * { margin-top: 1.5rem; }
+    .space-y-1 > * + * { margin-top: 0.25rem; }
+    
+    /* Grid system */
+    .grid { display: grid; }
+    .grid-cols-1 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+    
+    @media (min-width: 768px) {
+      .md\:flex-row { flex-direction: row; }
+      .md\:text-left { text-align: left; }
+      .md\:grid-cols-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+      .md\:col-span-12 { grid-column: span 12 / span 12; }
+      .md\:col-span-9 { grid-column: span 9 / span 9; }
+      .md\:col-span-8 { grid-column: span 8 / span 8; }
+      .md\:col-span-7 { grid-column: span 7 / span 7; }
+      .md\:col-span-6 { grid-column: span 6 / span 6; }
+      .md\:col-span-4 { grid-column: span 4 / span 4; }
+      .md\:col-span-3 { grid-column: span 3 / span 3; }
+      .md\:col-span-2 { grid-column: span 2 / span 2; }
+    }
+    
+    /* Typography & Display */
+    .block { display: block; }
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+    .text-sm { font-size: 0.875rem; }
+    .text-lg { font-size: 1.125rem; }
+    .text-2xl { font-size: 1.5rem; }
+    .font-medium { font-weight: 500; }
+    .font-semibold { font-weight: 600; }
+    .font-bold { font-weight: 700; }
+    
+    /* Borders & Lines */
+    .border-b { border-bottom: 1px solid rgba(75, 85, 99, 0.4); }
+    .border-teal-500\/10 { border-color: rgba(45, 212, 191, 0.1); }
+    .border-teal-500\/20 { border-color: rgba(45, 212, 191, 0.2); }
+    
+    /* Colors & Themes (Fallback dark mode colors always active if Tailwind fails) */
+    .text-teal-800, .dark\:text-teal-400 { color: #2dd4bf; } /* teal-400 */
+    .text-gray-700, .dark\:text-gray-300 { color: #d1d5db; } /* gray-300 */
+    .text-gray-600 { color: #9ca3af; } /* gray-400 */
+    .text-white { color: #ffffff; }
+    a { color: #2dd4bf; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    
+    /* Form fields */
+    input, select, textarea {
+      width: 100%;
+      box-sizing: border-box;
+      background-color: rgba(31, 41, 55, 0.5) !important; /* dark:bg-gray-800/50 fallback */
+      border: 1px solid rgba(75, 85, 99, 0.4) !important;
+      color: #ffffff !important;
+      padding: 0.5rem !important;
+      font-size: 1rem;
+      border-radius: 0.5rem;
+      outline: none;
+      -webkit-appearance: none; /* remove iOS default input shadow/styling */
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #2dd4bf !important;
+      box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.3) !important;
+    }
+    
+    /* Custom style for Select in iOS */
+    select {
+      background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M7 9l3 3 3-3' stroke='%239ca3af' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-position: right 0.5rem center;
+      background-repeat: no-repeat;
+      background-size: 1.25em 1.25em;
+      padding-right: 2.5rem !important;
+    }
+    
+    /* Button Styles */
+    .bg-green-600 { background-color: #16a34a; }
+    .bg-green-600:hover { background-color: #15803d; }
+  </style>
+</head>
+<body data-phone="551197524-1935" class="min-h-screen py-8 px-4 text-gray-100">
+
+  <div class="glass max-w-4xl w-full mx-auto rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8">
+    <!-- Header -->
+    <header class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6 pb-6 border-b border-teal-500/10">
+      <div class="flex-1 text-center md:text-left">
+        <h1 class="text-2xl font-bold text-teal-800 dark:text-teal-400">FisioBazan</h1>
+        <p class="text-sm text-gray-700 dark:text-gray-300">Atendimento em São Paulo – SP | Presencial e Online</p>
+      </div>
+      <div class="flex flex-col text-right space-y-1">
+        <a href="tel:+5511975241935" class="text-sm text-teal-800 dark:text-teal-400 hover:underline">📱 1197524-1935</a>
+      </div>
+    </header>
+
+    <h1 class="text-2xl font-bold text-center text-teal-700 dark:text-teal-400 mb-6">📋 FICHA DE PRÉ‑AVALIAÇÃO</h1>
+
+    <form id="avaliacaoForm" method="GET" action="#" class="space-y-6">
+      
+      <!-- Seção: Dados Pessoais -->
+      <div class="space-y-4">
+        <h2 class="text-lg font-semibold text-teal-800 dark:text-teal-400 border-b border-teal-500/20 pb-2">👤 Dados Pessoais</h2>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+          <!-- Nome Completo* -->
+          <div class="md:col-span-8">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="nome">Nome Completo*</label>
+            <input id="nome" name="nome" type="text" required autocomplete="name" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+          <!-- E-mail -->
+          <div class="md:col-span-4">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="email">E-mail</label>
+            <input id="email" name="email" type="email" placeholder="email@exemplo.com" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+
+          <!-- Data de Nascimento* -->
+          <div class="md:col-span-6">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="dt_nasc">Data de Nascimento*</label>
+            <input id="dt_nasc" name="dt_nasc" type="date" required class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+          <!-- Telefone Celular* -->
+          <div class="md:col-span-6">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="telefone">Telefone Celular*</label>
+            <input id="telefone" name="telefone" type="tel" required pattern="(\+55)?\d{11}" placeholder="11999999999" autocomplete="tel" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+
+          <!-- CPF -->
+          <div class="md:col-span-6">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="cpf">CPF</label>
+            <input id="cpf" name="cpf" type="text" placeholder="12345678900" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+          <!-- RG -->
+          <div class="md:col-span-6">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="rg">RG</label>
+            <input id="rg" name="rg" type="text" placeholder="12.345.678-9" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+
+          <!-- Gênero -->
+          <div class="md:col-span-6">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="genero">Gênero</label>
+            <select id="genero" name="genero" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all">
+              <option value="">Selecione</option>
+              <option>Masculino</option>
+              <option>Feminino</option>
+              <option>Outro</option>
+            </select>
+          </div>
+          <!-- Tipo Sanguíneo -->
+          <div class="md:col-span-6">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="tipo_sanguineo">Tipo Sanguíneo</label>
+            <select id="tipo_sanguineo" name="tipo_sanguineo" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all">
+              <option value="">Selecione</option>
+              <option>O+</option>
+              <option>O-</option>
+              <option>A+</option>
+              <option>A-</option>
+              <option>B+</option>
+              <option>B-</option>
+              <option>AB+</option>
+              <option>AB-</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção: Contato de Emergência -->
+      <div class="space-y-4 pt-4 border-t border-teal-500/10">
+        <h2 class="text-lg font-semibold text-teal-800 dark:text-teal-400 border-b border-teal-500/20 pb-2">🚨 Contato de Emergência</h2>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+          <!-- Nome Contato Emergência -->
+          <div class="md:col-span-6">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="nome_contato_emergencia">Nome Contato Emergência</label>
+            <input id="nome_contato_emergencia" name="nome_contato_emergencia" type="text" placeholder="Nome do contato" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+          <!-- Telefone Emergência -->
+          <div class="md:col-span-3">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="telefone_emergencia">Telefone Emergência</label>
+            <input id="telefone_emergencia" name="telefone_emergencia" type="tel" pattern="(\+55)?\d{10,11}" placeholder="11999999999" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+          <!-- Telefone Fixo -->
+          <div class="md:col-span-3">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="telefone_fixo">Telefone Fixo</label>
+            <input id="telefone_fixo" name="telefone_fixo" type="tel" pattern="(\+55)?\d{10,11}" placeholder="1133334444" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção: Endereço -->
+      <div class="space-y-4 pt-4 border-t border-teal-500/10">
+        <h2 class="text-lg font-semibold text-teal-800 dark:text-teal-400 border-b border-teal-500/20 pb-2">🏠 Endereço</h2>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+          <!-- CEP -->
+          <div class="md:col-span-3">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="cep">CEP</label>
+            <input id="cep" name="cep" type="text" pattern="(\d{8}|\d{5}-\d{3})" placeholder="01234-567" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+          <!-- Logradouro -->
+          <div class="md:col-span-9">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="logradouro">Logradouro</label>
+            <input id="logradouro" name="logradouro" type="text" placeholder="Rua Exemplo" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+
+          <!-- Número -->
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="numero">Número</label>
+            <input id="numero" name="numero" type="text" placeholder="123" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+          <!-- Complemento -->
+          <div class="md:col-span-3">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="complemento">Complemento</label>
+            <input id="complemento" name="complemento" type="text" placeholder="Apto 11" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+          <!-- Bairro -->
+          <div class="md:col-span-7">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="bairro">Bairro</label>
+            <input id="bairro" name="bairro" type="text" placeholder="Centro" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+
+          <!-- Cidade -->
+          <div class="md:col-span-6">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="cidade">Cidade</label>
+            <input id="cidade" name="cidade" type="text" placeholder="São Paulo" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+          <!-- Estado -->
+          <div class="md:col-span-3">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="estado">Estado</label>
+            <input id="estado" name="estado" type="text" placeholder="SP" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+          <!-- País -->
+          <div class="md:col-span-3">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="pais">País</label>
+            <input id="pais" name="pais" type="text" placeholder="Brasil" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção: Histórico Clínico -->
+      <div class="space-y-4 pt-4 border-t border-teal-500/10">
+        <h2 class="text-lg font-semibold text-teal-800 dark:text-teal-400 border-b border-teal-500/20 pb-2">📋 Histórico Clínico</h2>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+          <!-- Histórico Clínico -->
+          <div class="md:col-span-9">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="historico_clinico">Histórico Clínico</label>
+            <textarea id="historico_clinico" name="historico_clinico" rows="2" maxlength="300" placeholder="Ex: Dor lombar crônica" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all"></textarea>
+          </div>
+          <!-- CID-10 -->
+          <div class="md:col-span-3">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="cid10">CID-10</label>
+            <textarea id="cid10" name="cid10" rows="2" maxlength="300" placeholder="M54.5" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Seção: Histórico de Saúde -->
+      <div class="space-y-4 pt-4 border-t border-teal-500/10">
+        <h2 class="text-lg font-semibold text-teal-800 dark:text-teal-400 border-b border-teal-500/20 pb-2">🩺 Histórico de Saúde & Rotina</h2>
+        
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="motivo">* Qual o motivo da sua procura?</label>
+            <textarea id="motivo" name="motivo" rows="3" maxlength="500" required placeholder="Ex: dor lombar, reabilitação pós‑cirúrgica..." class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all"></textarea>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="doencas">Você tem ou já teve alguma doença crônica?</label>
+            <textarea id="doencas" name="doencas" rows="2" maxlength="300" placeholder="Ex: diabetes, hipertensão..." class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all"></textarea>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="cirurgias">Já fez alguma cirurgia? Qual?</label>
+            <textarea id="cirurgias" name="cirurgias" rows="2" maxlength="300" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all"></textarea>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="lesoes">Tem ou já teve lesões (coluna, joelho, ombro etc.)?</label>
+            <textarea id="lesoes" name="lesoes" rows="2" maxlength="300" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all"></textarea>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="medicacoes">Está tomando alguma medicação atualmente?</label>
+            <textarea id="medicacoes" name="medicacoes" rows="2" maxlength="300" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all"></textarea>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="atividade_fisica">Pratica alguma atividade física regularmente?</label>
+            <textarea id="atividade_fisica" name="atividade_fisica" rows="2" maxlength="300" placeholder="Qual? Frequência?" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all"></textarea>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="expectativas">* O que você espera alcançar com a fisioterapia ou pilates?</label>
+            <textarea id="expectativas" name="expectativas" rows="3" maxlength="500" required class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all"></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="horario">* Melhor dia e horário para atendimento</label>
+              <input id="horario" name="horario" type="text" required placeholder="Ex: seg e qua às 18h" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all" />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700 dark:text-gray-300" for="observacoes">Observações adicionais</label>
+              <textarea id="observacoes" name="observacoes" rows="2" maxlength="300" class="mt-1 w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 p-2 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 dark:focus:ring-teal-400 focus:border-transparent transition-all"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit button -->
+      <div class="pt-4">
+        <button type="submit" class="w-full sm:w-auto flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-xl shadow-md transition focus:outline-none focus:ring-2 focus:ring-green-500" aria-label="Enviar ficha via WhatsApp">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262 .489 1.694 .625 .712 .227 1.36 .195 1.871 .118 .571 -.085 1.758 -.719 2.006 -.413 .248 -.694 .248 -.289 .173 - .413 -.074 - .124 -.272 -.198 -.57 -.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096 .547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 0 00-3.48-8.413z"/></svg>
+          Enviar via WhatsApp
+        </button>
+      </div>
+    </form>
+
+    <footer class="mt-8 text-center text-sm text-gray-600">
+      <p>&copy; <span id="currentYear"></span> FisioBazan. Todos os direitos reservados.</p>
+      <p class="mt-1">Desenvolvido com ❤️ por <a href="https://dotincbr.com.br/" target="_blank" rel="noopener noreferrer" class="underline font-semibold">DotInc</a></p>
+    </footer>
+  </div>
+
+  <script>
+    // Atualiza o ano
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    // Envio via WhatsApp
+    document.getElementById('avaliacaoForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = new FormData(this);
+      
+      // Normalize CPF to mask 123.456.789-00
+      if (data.has('cpf')) {
+        let rawCpf = data.get('cpf').toString().replace(/\D/g, '');
+        if (rawCpf.length === 11) {
+          const formattedCpf = `${rawCpf.slice(0,3)}.${rawCpf.slice(3,6)}.${rawCpf.slice(6,9)}-${rawCpf.slice(9)}`;
+          data.set('cpf', formattedCpf);
+        }
+      }
+      
+      // Normalize CEP to mask 12345-678
+      if (data.has('cep')) {
+        let rawCep = data.get('cep').toString().replace(/\D/g, '');
+        if (rawCep.length === 8) {
+          const formattedCep = `${rawCep.slice(0,5)}-${rawCep.slice(5)}`;
+          data.set('cep', formattedCep);
+        }
+      }
+
+      // Map keys to readable and accented Portuguese labels
+      const labelMap = {
+        'nome': 'Nome Completo',
+        'email': 'Email',
+        'dt_nasc': 'Data de Nascimento',
+        'telefone': 'Telefone Celular',
+        'cpf': 'CPF',
+        'rg': 'RG',
+        'genero': 'Gênero',
+        'tipo_sanguineo': 'Tipo Sanguíneo',
+        'telefone_emergencia': 'Telefone Emergência',
+        'nome_contato_emergencia': 'Nome Contato Emergência',
+        'telefone_fixo': 'Telefone Fixo',
+        'cep': 'CEP',
+        'logradouro': 'Logradouro',
+        'numero': 'Número',
+        'complemento': 'Complemento',
+        'bairro': 'Bairro',
+        'cidade': 'Cidade',
+        'estado': 'Estado',
+        'pais': 'País',
+        'historico_clinico': 'Histórico Clínico',
+        'cid10': 'CID-10',
+        'motivo': 'Motivo da Procura',
+        'doencas': 'Doenças Crônicas',
+        'cirurgias': 'Cirurgias Realizadas',
+        'lesoes': 'Lesões',
+        'medicacoes': 'Medicações em Uso',
+        'atividade_fisica': 'Atividade Física',
+        'expectativas': 'Expectativas',
+        'horario': 'Melhor Dia e Horário',
+        'observacoes': 'Observações Adicionais'
+      };
+
+      let parts = [];
+      for (const [key, raw] of data.entries()) {
+        const value = raw.trim();
+        if (!value) continue;
+        const label = labelMap[key] || key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        parts.push(`*${label}*: ${value},`);
+      }
+      
+      let msg = "📋 *FICHA DE PRÉ‑AVALIAÇÃO – FISIOBAZAN*\n\n" + parts.join('\n');
+      
+      const rawPhone = document.body.dataset.phone || '';
+      let phone = rawPhone.replace(/\D/g, '');
+      // Se o número de telefone não tiver o código de país (55), adiciona automaticamente
+      if (phone.length === 11 && !phone.startsWith('55')) {
+        phone = '55' + phone;
+      }
+      const encodedMsg = encodeURIComponent(msg);
+      const url = `https://wa.me/${phone}?text=${encodedMsg}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+    });
+  </script>
+</body>
+</html>

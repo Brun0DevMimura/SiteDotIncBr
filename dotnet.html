@@ -488,7 +488,7 @@
 
             // Formulário de Contato
             const form = document.getElementById('contact-form');
-            form.addEventListener('submit', (e) => {
+            form.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 
                 const name = document.getElementById('name').value;
@@ -496,6 +496,15 @@
                 const email = document.getElementById('email').value;
                 const type = document.getElementById('project-type').value;
                 const details = document.getElementById('details').value;
+
+                const formData = {
+                    nome: name,
+                    whatsapp: whatsapp,
+                    email: email,
+                    segmento: type,
+                    detalhes: details,
+                    origem: 'Formulário .NET'
+                };
 
                 const textMessage = `Olá Bruno, acabei de enviar uma mensagem a partir da página de sistemas .NET!
                 
@@ -517,6 +526,16 @@ ${details}`;
                 button.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin"></i> Enviando...';
                 button.classList.remove('bg-techCyan');
                 button.classList.add('bg-slate-800', 'text-slate-400');
+
+                try {
+                    await fetch('https://n8n.dotincbr.com.br/webhook/leads-site', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    });
+                } catch (err) {
+                    console.error('Erro ao enviar para o webhook n8n:', err);
+                }
 
                 setTimeout(() => {
                     button.innerHTML = '<i class="fa-solid fa-circle-check text-techGreen"></i> Mensagem Gerada!';

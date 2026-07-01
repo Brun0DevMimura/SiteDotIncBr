@@ -133,9 +133,26 @@
             }
         }
 
-        .cta-pulse {
-            animation: pulseGlow 2.5s infinite;
+        .cta-pulse { animation: pulseGlow 2.5s infinite; }
+
+        /* Fade-in content after preloader */
+        body.content-fade > *:not(#preloader):not(#xicara-canvas) {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            pointer-events: none;
         }
+        body.loaded.content-fade > *:not(#preloader):not(#xicara-canvas) {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        body.content-fade > #xicara-canvas {
+            opacity: 0 !important;
+            transition: opacity 0.8s ease;
+        }
+        body.loaded.content-fade > #xicara-canvas {
+            opacity: 0.20 !important;
+        }
+
     </style>
 
     <!-- Schema.json (SEO Local estruturado para o ABC e Alto Tietê) -->
@@ -201,7 +218,7 @@
 </head>
 
 <body
-    class="bg-techDark text-slate-200 font-sans antialiased overflow-x-hidden selection:bg-techCyan/30 selection:text-white">
+    class="bg-techDark text-slate-200 font-sans antialiased overflow-x-hidden selection:bg-techCyan/30 selection:text-white content-fade">
 
     <!-- Canvas global frame-by-frame: xicara girando como bg fixo da página -->
     <canvas id="xicara-canvas"
@@ -300,9 +317,7 @@
     </div>
 
     <!-- Hero Section (Acima da Dobra com Tecnologia & Escapismo de Planilhas) -->
-    <!-- HERO: seção TRANSPARENTE — canvas aparece ao fundo -->
-    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex items-center min-h-[90vh]"
-        style="background:transparent;">
+    <!-- HERO: seção TRANSPARENTE — canvas aparece ao fundo        <section id="hero" class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex items-center min-h-[90vh] opacity-0" style="background:transparent;">
         <!-- Glows de Background Ambientais -->
         <div
             class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] bg-techCyan/10 rounded-full blur-[100px] pointer-events-none">
@@ -1161,7 +1176,7 @@
 
             let sdrCurrentStep = 1;
             const sdrTotalSteps = 4;
-            const N8N_WEBHOOK_URL = ''; // Insira seu webhook do n8n aqui
+            const N8N_WEBHOOK_URL = 'https://n8n.dotincbr.com.br/webhook/leads-site'; // Insira seu webhook do n8n aqui
 
             // Function to open SDR Modal
             const openSdrModal = () => {
@@ -1210,13 +1225,13 @@
                 });
             }
 
-            const resetSdrForm = () => {
+            function resetSdrForm() {
                 sdrCurrentStep = 1;
                 showSdrStep(sdrCurrentStep);
                 sdrForm.reset();
                 sdrSuccessScreen.classList.add('hidden');
                 sdrSuccessScreen.classList.remove('flex');
-            };
+            }
 
             const validateSdrStep = (stepNum) => {
                 const stepContainer = document.querySelector(`.sdr-step[data-step="${stepNum}"]`);
@@ -1241,7 +1256,92 @@
                 return isValid;
             };
 
-            const showSdrStep = (stepNum) => {
+            function showSdrStep(stepNum) {
+    // Hide all steps
+    document.querySelectorAll('.sdr-step').forEach(step => {
+        step.classList.add('hidden');
+        step.classList.remove('block');
+    });
+
+    const activeStep = document.querySelector(`.sdr-step[data-step="${stepNum}"]`);
+    if (activeStep) {
+        activeStep.classList.remove('hidden');
+        activeStep.classList.add('block');
+    }
+
+    // Progress Bar
+    const progressPercentage = (stepNum / sdrTotalSteps) * 100;
+    if (sdrProgressBar) {
+        sdrProgressBar.style.width = `${progressPercentage}%`;
+    }
+
+    // Buttons configuration
+    if (stepNum === 1) {
+        sdrPrevBtn.classList.add('opacity-0', 'pointer-events-none');
+    } else {
+        sdrPrevBtn.classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    if (stepNum === sdrTotalSteps) {
+        sdrNextBtn.classList.add('hidden');
+        sdrSubmitBtn.classList.remove('hidden');
+        sdrSubmitBtn.classList.add('flex');
+
+        // Populate review page
+        document.getElementById('review-name').textContent = document.getElementById('sdr-name').value;
+        document.getElementById('review-whatsapp').textContent = document.getElementById('sdr-whatsapp').value;
+        document.getElementById('review-email').textContent = document.getElementById('sdr-email').value;
+        document.getElementById('review-company').textContent = document.getElementById('sdr-company').value;
+
+        const segment = document.getElementById('sdr-segment').value;
+        const size = document.getElementById('sdr-team-size').value;
+        document.getElementById('review-firmographics').textContent = `${segment} • ${size}`;
+
+        const pain = document.getElementById('sdr-pain').value;
+        document.getElementById('review-pain').textContent = pain;
+    } else {
+        sdrNextBtn.classList.remove('hidden');
+        sdrSubmitBtn.classList.add('hidden');
+        sdrSubmitBtn.classList.remove('flex');
+    }
+}
+    /* Duplicate block start
+    /* duplicate block removed */
+        /*
+        step.classList.remove('block');
+    });
+
+    const activeStep = document.querySelector(`.sdr-step[data-step="${stepNum}"]`);
+    if (activeStep) {
+        activeStep.classList.remove('hidden');
+        activeStep.classList.add('block');
+    }
+
+    // Progress Bar
+    const progressPercentage = (stepNum / sdrTotalSteps) * 100;
+    if (sdrProgressBar) {
+        sdrProgressBar.style.width = `${progressPercentage}%`;
+    }
+
+    // Buttons configuration
+    if (stepNum === 1) {
+        sdrPrevBtn.classList.add('opacity-0', 'pointer-events-none');
+    } else {
+        sdrPrevBtn.classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    if (stepNum === sdrTotalSteps) {
+        sdrNextBtn.classList.add('hidden');
+        sdrSubmitBtn.classList.remove('hidden');
+        sdrSubmitBtn.classList.add('flex');
+
+        // Populate review page
+        document.getElementById('review-name').textContent = document.getElementById('sdr-name').value;
+        document.getElementById('review-whatsapp').textContent = document.getElementById('sdr-whatsapp').value;
+        document.getElementById('review-email').textContent = document.getElementById('sdr-email').value;
+        document.getElementById('review-company').textContent = document.getElementById('sdr-company').value;
+
+                // Hide all steps
                 document.querySelectorAll('.sdr-step').forEach(step => {
                     step.classList.add('hidden');
                     step.classList.remove('block');
@@ -1270,17 +1370,17 @@
                     sdrNextBtn.classList.add('hidden');
                     sdrSubmitBtn.classList.remove('hidden');
                     sdrSubmitBtn.classList.add('flex');
-                    
+
                     // Populate review page
                     document.getElementById('review-name').textContent = document.getElementById('sdr-name').value;
                     document.getElementById('review-whatsapp').textContent = document.getElementById('sdr-whatsapp').value;
                     document.getElementById('review-email').textContent = document.getElementById('sdr-email').value;
                     document.getElementById('review-company').textContent = document.getElementById('sdr-company').value;
-                    
+
                     const segment = document.getElementById('sdr-segment').value;
                     const size = document.getElementById('sdr-team-size').value;
                     document.getElementById('review-firmographics').textContent = `${segment} • ${size}`;
-                    
+
                     const pain = document.getElementById('sdr-pain').value;
                     document.getElementById('review-pain').textContent = pain;
                 } else {
@@ -1288,7 +1388,7 @@
                     sdrSubmitBtn.classList.add('hidden');
                     sdrSubmitBtn.classList.remove('flex');
                 }
-            };
+            */
 
             if (sdrNextBtn) {
                 sdrNextBtn.addEventListener('click', () => {
@@ -1433,7 +1533,8 @@
                         onComplete: () => {
                             preloader.style.display = 'none';
                             preloader.style.pointerEvents = 'none';
-                        }
+                        document.body.classList.add('loaded');
+                    }
                     });
                 }, 300);
             };
